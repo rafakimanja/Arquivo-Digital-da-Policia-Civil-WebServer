@@ -1,0 +1,26 @@
+{{define "login"}}
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+</head>
+<body>
+    <form action="/login" method="post">
+        <h1>Tela de Login</h1>
+        <label>RG</label><input type="text" name="RG" required>
+        <label>Senha</label><input type="password" name="Senha" id="" required>
+        <a href="#">ESQUECEU A SENHA ?</a>
+        <button type="submit">ENTRAR</button>
+        <a href="#">CADASTRAR</a>
+    </form>
+    <br>
+    {{ if .Status}}
+        <p style="color: green;">{{.Message}}</p>
+    {{ else }}
+        <p style="color: brown;">{{.Message}}</p>
+    {{ end }}
+</body>
+</html>
+{{end}}

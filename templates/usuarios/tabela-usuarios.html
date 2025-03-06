@@ -1,0 +1,27 @@
+{{ define "table-users" }}
+    <table>
+        <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Admin</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        {{ range . }}
+        <tr>
+            <td>{{.Nome}}</td>
+            <td>{{.Admin}}</td>
+            <td>
+                <button>
+                    <span class="material-symbols-outlined">edit</span>
+                </button>
+                <button>
+                    <span class="material-symbols-outlined">delete</span>
+                </button>
+            </td>
+        </tr>
+        {{ end }}
+        </tbody>
+    </table>
+{{end}}

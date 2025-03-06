@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Usuarios Cadastrados</title>
+</head>
+<body>
+  {{template "header"}}
+  {{template "sidebar"}}
+  <div>
+      {{ if gt (len .usuarios) 0 }}
+          {{template "users-filter"}}
+          {{template "table-users" .usuarios}}
+      {{ else }}
+        <h1>Sem usuarios cadastrado</h1>
+      {{ end }}
+  </div>
+</body>
+</html>

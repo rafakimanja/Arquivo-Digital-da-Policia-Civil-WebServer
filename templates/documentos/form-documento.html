@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Novo Documento</title>
+</head>
+<body>
+    {{template "header"}}
+    {{template "sidebar" }}
+    <div>
+        <h1>Adiconar Arquivo</h1>
+        <form method='post'>
+            <div>
+                <label >Nome do Arquivo:</label>
+                <input type="text" placeholder="Nome do Arquivo"/>
+            </div>
+            <div>
+                <label>Ano:</label>
+                <input type="text" placeholder='Informe o ano' />
+            </div>
+            <div>
+                <label>Tipo de Arquivo:</label>
+                <select name="categoria" >
+                    <option value="">Escolha</option>
+                    <option value="IP">IP</option>
+                    <option value="TC">TC</option>
+                    <option value="PAI">PAI</option>
+                    <option value="Carta Precatoria">Cart Prec</option>
+                    <option value="Outro">Outro</option>
+                </select>
+            </div>
+            <div>
+                <label>Buscar</label>
+                <input type="file" name="" id="">
+            </div>
+            <div>
+                <button type="submit">Salvar</button>
+                <button>Cancelar</button>
+            </div>
+        </form>
+</div>
+</body>
+</html>

@@ -1,0 +1,29 @@
+{{ define "filtro-doc"}}
+<div>
+  <div>
+    <label>Categoria</label>
+    <select>
+      <option value="">Escolha</option>
+      <option value="IP">IP</option>
+      <option value="TC">TC</option>
+      <option value="PAI">PAI</option>
+      <option value="Carta Precatoria">Cart Prec</option>
+      <option value="Outro">Outro</option>
+    </select>
+  </div>
+  <div>
+    <label>Ano</label>
+    <input type="text" placeholder="2024" />
+  </div>
+  <div>
+    <label>Nome</label>
+    <input type="text" placeholder="Digite o nome" />
+  </div>
+  <div>
+    <button>
+      <span class="material-symbols-outlined">search</span>
+    </button>
+  </div>
+</div>
+
+{{end}}

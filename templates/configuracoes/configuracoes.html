@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Configurações</title>
+</head>
+<body>
+  {{ template "header" }}
+  <h1>Configurações do Sistema</h1>
+  {{ template "sidebar" }}
+  <div>
+    <form method="post">
+      <div>
+        <label>Tipo de Arquivo</label>
+        <select>
+        <option value="">Escolha</option>
+        <option value="txt">TXT</option>
+        <option value="pdf">PDF</option>
+        <option value="xlxs">XLSX</option>
+        </select>
+      </div>
+      <div>
+        <label>Upload de Arquivo Único</label>
+        <input type="checkbox">
+      </div>
+      <div>
+        <button>Salvar</button>
+      </div>
+    </form>
+  </div>
+</body>
+</html>
