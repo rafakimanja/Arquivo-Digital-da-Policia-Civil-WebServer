@@ -60,7 +60,7 @@ func ConectaDB() (*gorm.DB, error) {
 		return nil, err
 	}
 
-	err = DB.AutoMigrate(&models.Usuario{}, &models.Sistema{}, &models.Documento{})
+	err = DB.AutoMigrate(&models.Usuario{}, &models.Sistema{}, &models.Documento{}, &models.Session{})
 	if err != nil {
 		return nil, fmt.Errorf("erro ao rodar o AutoMigrate: %v", err)
 	}

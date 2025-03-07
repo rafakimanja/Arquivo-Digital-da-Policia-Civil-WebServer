@@ -6,7 +6,6 @@ import (
 	"net/http"
 
 	"github.com/gin-gonic/gin"
-	"github.com/joho/godotenv"
 )
 
 func ExibeTelaLogin(c *gin.Context) {
@@ -34,18 +33,8 @@ func LoginAcess(c *gin.Context) {
 	database.DB.First(&user, userLogin)
 
 	if user.ID == 0 {
-
 		c.HTML(http.StatusNotFound, "login.html", gin.H{
 			"Message": "Usuario inválido!",
-			"Status":  false,
-		})
-		return
-	}
-
-	err := godotenv.Load()
-	if err != nil {
-		c.HTML(http.StatusInternalServerError, "login.html", gin.H{
-			"Message": "Erro interno do servidor",
 			"Status":  false,
 		})
 		return
