@@ -6,6 +6,10 @@
     <li><a href="/index/config">Configurações</a></li>
     <li><a href="/index/usuarios">Usuários Cad.</a></li>
     <li><a href="#">Ajuda</a></li>
-    <li><a href="/">Sair</a></li>
+    <li>
+        <form action="/index/logout" method="post">
+            <button type="submit">Sair</button>
+        </form>
+    </li>
 </ul>
 {{end}}

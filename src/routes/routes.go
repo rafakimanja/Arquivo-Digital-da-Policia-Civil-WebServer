@@ -2,6 +2,8 @@ package routes
 
 import (
 	"adpc-webserver/src/controllers"
+	"adpc-webserver/src/middlewares"
+
 	"github.com/gin-gonic/gin"
 )
 
@@ -10,7 +12,7 @@ func HandleRequest() {
 	r.LoadHTMLGlob("templates/**/*")
 	r.GET("/", controllers.ExibeTelaLogin)
 	r.POST("/login", controllers.LoginAcess)
-	indexGroup := r.Group("/index")
+	indexGroup := r.Group("/index", middlewares.SessionMiddleware)
 	{
 		indexGroup.GET("/", controllers.ExibeTelaIndex)
 		indexGroup.GET("/documentos", controllers.ExibeTodosDocumentos)
@@ -28,6 +30,8 @@ func HandleRequest() {
 		indexGroup.POST("/usuarios/form", controllers.CriaNovoUsuario)
 		indexGroup.PATCH("usuarios/:id", controllers.AtualizaUsuario)
 		indexGroup.DELETE("/usuarios/:id", controllers.DeletaUsuario)
+		indexGroup.POST("/logout", controllers.LogoutSession)
 	}
+	r.NoRoute(controllers.ExibeTelaNotFound)
 	r.Run(":5000")
 }
