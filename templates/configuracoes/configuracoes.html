@@ -9,10 +9,31 @@
   <h1>Configurações do Sistema</h1>
   {{ template "sidebar" }}
   <div>
+    {{ if .configuracoes }}
     <form method="post">
       <div>
         <label>Tipo de Arquivo</label>
-        <select>
+        <select name="category">
+        <option value="">Escolha</option>
+        <option value="txt"{{ if eq .configuracoes.TipoArq "txt" }}selected{{ end }}>TXT</option>
+        <option value="pdf"{{ if eq .configuracoes.TipoArq "pdf" }}selected{{ end }}>PDF</option>
+        <option value="xlxs"{{ if eq .configuracoes.TipoArq "xlxs" }}selected{{ end }}>XLSX</option>
+        <option value="csv" {{ if eq .configuracoes.TipoArq "csv" }}selected{{ end }}>CSV</option>
+        </select>
+      </div>
+      <div>
+        <label>Upload de Arquivo Único</label>
+        <input type="checkbox" name="only" {{ if .configuracoes.UploadUnico }}checked{{ end }}>
+      </div>
+      <div>
+        <button>Salvar</button>
+      </div>
+    </form>
+    {{ else }}
+    <form method="post">
+      <div>
+        <label>Tipo de Arquivo</label>
+        <select name="category">
         <option value="">Escolha</option>
         <option value="txt">TXT</option>
         <option value="pdf">PDF</option>
@@ -21,12 +42,13 @@
       </div>
       <div>
         <label>Upload de Arquivo Único</label>
-        <input type="checkbox">
+        <input type="checkbox" name="only">
       </div>
       <div>
         <button>Salvar</button>
       </div>
     </form>
+    {{end}}
   </div>
 </body>
 </html>

@@ -63,7 +63,7 @@ func LoginAcess(c *gin.Context) {
 
 	if err := database.DB.Create(&session).Error; err != nil {
 		fmt.Println("Erro ao salvar sessão no banco:", err)
-		c.HTML(http.StatusInternalServerError, "error.html", gin.H{
+		c.HTML(http.StatusInternalServerError, "erro.html", gin.H{
 			"code":    http.StatusInternalServerError,
 			"message": "Erro ao criar sessão.",
 		})

@@ -9,18 +9,29 @@ import (
 )
 
 func ExibeConfSistema(c *gin.Context) {
-	c.HTML(http.StatusOK, "configuracoes.html", nil)
+	var configuracoes models.Sistema
+	resp := database.DB.Last(&configuracoes)
+	if resp.RowsAffected == 0 {
+		c.HTML(http.StatusOK, "configuracoes.html", gin.H{
+			"configuracoes": nil,
+		})
+	} else {
+		c.HTML(http.StatusOK, "configuracoes.html", gin.H{
+			"configuracoes": configuracoes,
+		})
+	}
 }
 
 func SalvaConfSistema(c *gin.Context) {
 	var configuracoes models.Sistema
 
-	if err := c.ShouldBindJSON(&configuracoes); err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{
-			"error": err.Error(),
-		})
-		return
-	}
+	upload_only := c.PostForm("only")
+	categoria := c.PostForm("category")
+
+	if upload_only == "on" {configuracoes.UploadUnico=true} else {configuracoes.UploadUnico=false}
+
+	configuracoes.TipoArq = categoria
+
 	database.DB.Create(&configuracoes)
-	c.JSON(http.StatusOK, configuracoes)
+	c.Redirect(http.StatusSeeOther, "/index/config")
 }
