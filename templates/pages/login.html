@@ -5,22 +5,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
+    <link rel="stylesheet" href="/static/css/login.css">
 </head>
 <body>
-    <form action="/login" method="post">
-        <h1>Tela de Login</h1>
-        <label>RG</label><input type="text" name="RG" required>
-        <label>Senha</label><input type="password" name="Senha" id="" required>
-        <a href="#">ESQUECEU A SENHA ?</a>
-        <button type="submit">ENTRAR</button>
-        <a href="#">CADASTRAR</a>
-    </form>
-    <br>
+    <div class="bg-login">
+        <form action="/login" method="post">
+            <h1>Tela de Login</h1>
+            <div class="input-login">
+                <label for="rg" >RG</label>
+                <input type="text" name="RG" id="rg" required>
+            </div>
+            <div class="input-login">
+                <label for="senha">Senha</label>
+                <input type="password" name="Senha" id="senha" required>
+                <a href="#">ESQUECEU A SENHA ?</a>
+            </div>
+            <div class="header-login">
+                <button type="submit" id="btnLogin">ENTRAR</button>
+                <a href="#">CADASTRAR</a>
+            </div>
+        </form>
+    </div>
     {{ if .Status}}
         <p style="color: green;">{{.Message}}</p>
     {{ else }}
         <p style="color: brown;">{{.Message}}</p>
     {{ end }}
+
+    <script src="/static/js/login.js"></script>
 </body>
 </html>
 {{end}}

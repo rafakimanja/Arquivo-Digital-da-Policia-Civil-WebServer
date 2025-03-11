@@ -1,0 +1,31 @@
+:root{
+    --primart-color: #2e2e2e;
+    --second-color: #fff;
+}
+
+
+.bg-login{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--primart-color); 
+    color: var(--second-color);
+    border-radius: 20px;
+}
+
+.input-login{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+#btnLogin{
+    background-color: rgb(62, 110, 62);
+    cursor: pointer;
+}
+
+#btnLogin:hover{
+    background-color: rgb(41, 92, 41);
+}
+

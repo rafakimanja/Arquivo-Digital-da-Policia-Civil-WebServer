@@ -10,6 +10,7 @@ import (
 func HandleRequest() {
 	r := gin.Default()
 	r.LoadHTMLGlob("templates/**/*")
+	r.Static("/assets", "./assets")
 	r.GET("/", controllers.ExibeTelaLogin)
 	r.POST("/login", controllers.LoginAcess)
 	indexGroup := r.Group("/index", middlewares.SessionMiddleware)
