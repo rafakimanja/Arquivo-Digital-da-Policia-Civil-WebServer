@@ -9,6 +9,7 @@ import (
 
 func HandleRequest() {
 	r := gin.Default()
+	r.Static("/static", "./static")
 	r.LoadHTMLGlob("templates/**/*")
 	r.GET("/", controllers.ExibeTelaLogin)
 	r.POST("/login", controllers.LoginAcess)
@@ -18,7 +19,7 @@ func HandleRequest() {
 		indexGroup.GET("/documentos", controllers.ExibeTodosDocumentos)
 		indexGroup.GET("/documentos/form", controllers.ExibeFormDocumentos)
 		indexGroup.GET("/documentos/:id", controllers.BuscaArquivo)
-		indexGroup.GET("/documentos/donwload/:id", controllers.BaixaArquivo)
+		indexGroup.GET("/documentos/download/:id", controllers.BaixaArquivo)
 		indexGroup.POST("/documentos", controllers.CriaNovoArquivo)
 		indexGroup.PUT("/documentos/:id", controllers.AtualizaArquivo)
 		indexGroup.DELETE("/documentos/:id", controllers.DeletaArquivo)

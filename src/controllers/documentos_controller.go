@@ -6,6 +6,8 @@ import (
 	"adpc-webserver/src/services"
 	"fmt"
 	"net/http"
+	"os"
+
 	"path/filepath"
 	"strconv"
 
@@ -13,9 +15,11 @@ import (
 )
 
 func ExibeTodosDocumentos(c *gin.Context) {
-	// var documentos []models.Documento
-	// database.DB.Find(&documentos)
-	c.HTML(http.StatusOK, "documentos.html", nil)
+	var documentos []models.Documento
+	database.DB.Find(&documentos)
+	c.HTML(http.StatusOK, "documentos.html", gin.H{
+		"documentos": documentos,
+	})
 }
 
 func ExibeFormDocumentos(c *gin.Context) {
@@ -29,8 +33,9 @@ func CriaNovoArquivo(c *gin.Context) {
 	ano := c.PostForm("ano")
 	documento, err := c.FormFile("arquivo")
 	if err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{
-			"erro": "arquivo nao enviado!",
+		c.HTML(http.StatusBadRequest, "erro.html",gin.H{
+			"code": http.StatusBadRequest,
+			"message": err.Error(),
 		})
 		return
 	}
@@ -46,15 +51,14 @@ func CriaNovoArquivo(c *gin.Context) {
 	database.DB.Create(&arquivo)
 
 	if err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{
+		c.HTML(http.StatusBadRequest, "erro.html",gin.H{
+			"code": http.StatusBadRequest,
 			"message": "erro no upload do arquivo!",
-			"error":   err.Error(),
 		})
 		return
 	}
 
-	c.JSON(http.StatusOK, gin.H{
-		"message": "Arquivo salvo! " + documento.Filename})
+	c.Redirect(303, "/index/documentos/form")
 }
 
 func BuscaArquivo(c *gin.Context) {
@@ -64,11 +68,16 @@ func BuscaArquivo(c *gin.Context) {
 	database.DB.First(&documento, id)
 
 	if documento.ID == 0 {
-		c.JSON(http.StatusNotFound, gin.H{
-			"error": "Arquivo nao encontrado!"})
-		return
+		c.HTML(http.StatusNotFound, "erro.html", gin.H{
+			"code": http.StatusNotFound,
+			"message": "Arquivo nao encontrado!",
+		})
+	} else {
+		c.HTML(http.StatusOK, "form-documento.html", gin.H{
+			"Upload": true,
+			"Documento": documento,
+		})
 	}
-	c.JSON(http.StatusOK, documento)
 }
 
 func BaixaArquivo(c *gin.Context) {
@@ -77,19 +86,31 @@ func BaixaArquivo(c *gin.Context) {
 
 	idArq := c.Params.ByName("id")
 	database.DB.First(&documento, idArq)
-
+	
 	if documento.ID == 0 {
 		c.JSON(http.StatusNotFound, gin.H{
 			"error": "Arquivo nao encontrado!"})
 		return
 	}
 
-	path := "../arquivos/" + fmt.Sprint(documento.Ano) + "/" + documento.Categoria + "/" + documento.Arquivo
+	path := "./arquivos/" + fmt.Sprint(documento.Ano) + "/" + documento.Categoria + "/" + documento.Arquivo
+	file, err := os.Open(path)
+	if err != nil {
+		c.HTML(http.StatusInternalServerError, "erro.html", gin.H{
+			"code": http.StatusInternalServerError,
+			"message": "Erro ao abrir arquivo",
+		})
+	}
 
-	c.Header("Content-Disposition", "attachment; filename="+documento.Arquivo)
-	c.Header("Content-Type", "application/pdf")
-	c.Header("Content-Transfer-Encoding", "binary")
-	c.File(path)
+	defer file.Close()
+
+	fileInfo, _ := file.Stat()
+
+	extraHeaders := map[string]string{
+		"Content-Disposition": "attachment; filename="+documento.Arquivo,
+	}
+
+	c.DataFromReader(http.StatusOK, fileInfo.Size(), "application/pdf", file, extraHeaders)
 }
 
 func DeletaArquivo(c *gin.Context) {
@@ -106,21 +127,27 @@ func DeletaArquivo(c *gin.Context) {
 	gerenciador := services.Construtor()
 
 	if !gerenciador.DeletaArquivo(documento, false) {
-		c.JSON(http.StatusInternalServerError, gin.H{
-			"error": "Erro ao deletar arquivo!"})
+		c.HTML(http.StatusInternalServerError, "erro.html", gin.H{
+			"code": http.StatusInternalServerError,
+			"message": "Erro ao deletar arquivo!",
+		})
 		return
 	}
 
 	result := database.DB.Delete(&documento, id)
 	if result.Error != nil {
-		c.JSON(http.StatusInternalServerError, gin.H{
-			"error": "Erro ao deletar arquivo!"})
+		c.HTML(http.StatusInternalServerError, "erro.html", gin.H{
+			"code": http.StatusInternalServerError,
+			"message": "Erro ao deletar arquivo!",
+		})
 		return
 	}
 
 	if !gerenciador.DeletaArquivo(documento, true) {
-		c.JSON(http.StatusInternalServerError, gin.H{
-			"error": "Erro ao deletar arquivo!"})
+		c.HTML(http.StatusInternalServerError, "erro.html", gin.H{
+			"code": http.StatusInternalServerError,
+			"message": "Erro ao deletar arquivo!",
+		})
 		return
 	}
 
@@ -135,8 +162,9 @@ func AtualizaArquivo(c *gin.Context) {
 	database.DB.First(&documento, id)
 
 	if documento.ID == 0 {
-		c.JSON(http.StatusNotFound, gin.H{
-			"error": "Arquivo nao encontrado!"})
+		c.HTML(http.StatusNotFound, "erro.html", gin.H{
+			"code": http.StatusNotFound,
+			"message": "Arquivo nao encontrado!"})
 		return
 	}
 
@@ -151,44 +179,45 @@ func AtualizaArquivo(c *gin.Context) {
 	gerenciador := services.Construtor()
 
 	if err != nil {
-		documentoAtt.Arquivo = nome + filepath.Ext(documento.Arquivo)
+		documentoAtt.Arquivo = nome+filepath.Ext(documento.Arquivo)
 
 		if !gerenciador.AtualizarArquivo(documento, documentoAtt) {
-			c.JSON(http.StatusInternalServerError, gin.H{
-				"error": "Erro ao atualizar arquivo!"})
+			c.HTML(http.StatusInternalServerError, "erro.html", gin.H{
+				"code": http.StatusInternalServerError,
+				"message": "Erro ao atualizar arquivo!"})
 			return
 		}
 
 	} else {
 
-		documentoAtt.Arquivo = nome + filepath.Ext(arquivo.Filename)
+		documentoAtt.Arquivo = nome+filepath.Ext(arquivo.Filename)
 
 		_, path := gerenciador.SalvaArquivo(documentoAtt)
-		pathDoc := path + "/" + documentoAtt.Arquivo
+		pathDoc := path+"/"+documentoAtt.Arquivo
 
 		err = c.SaveUploadedFile(arquivo, pathDoc)
 
 		if err != nil {
-			c.JSON(http.StatusBadRequest, gin.H{
-				"message": "erro no upload do arquivo!",
-				"error":   err.Error(),
-			})
+			c.HTML(http.StatusInternalServerError, "erro.html", gin.H{
+				"code": http.StatusInternalServerError,
+				"message": "Erro no upload do arquivo!"})
 			return
 		}
 
-		if !gerenciador.DeletaArquivo(documento, false) || !gerenciador.DeletaArquivo(documento, true) {
-			c.JSON(http.StatusInternalServerError, gin.H{
-				"error": "Erro ao atualizar arquivo!"})
+		if !gerenciador.DeletaArquivo(documento, false) || !gerenciador.DeletaArquivo(documento, true){
+			c.HTML(http.StatusInternalServerError, "erro.html", gin.H{
+				"code": http.StatusInternalServerError,
+				"message": "Erro ao atualizar arquivo!"})
 			return
 		}
 	}
 
-	if err := database.DB.Model(&documento).Updates(documentoAtt).Error; err != nil {
-		c.JSON(http.StatusInternalServerError, gin.H{
-			"error": "Erro ao atualizar arquivo! " + err.Error()})
+	if err := database.DB.Model(&documento).Updates(documentoAtt).Error; err != nil{
+		c.HTML(http.StatusInternalServerError, "erro.html", gin.H{
+			"code": http.StatusInternalServerError,
+			"message": "Erro ao atualizar arquivo!"})
 		return
 	}
 
-	c.JSON(http.StatusOK, gin.H{
-		"message": "Arquivo atualizado!"})
+	c.Redirect(http.StatusSeeOther, "/index/documentos")
 }

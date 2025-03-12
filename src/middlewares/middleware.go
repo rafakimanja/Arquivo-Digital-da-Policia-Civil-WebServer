@@ -14,7 +14,7 @@ func SessionMiddleware(c *gin.Context){
 
 	sessionToken, err := c.Cookie("session_token")
 	if err != nil {
-		c.Redirect(http.StatusSeeOther, "/login")
+		c.Redirect(http.StatusSeeOther, "/")
 		c.Abort()
 		return
 	}

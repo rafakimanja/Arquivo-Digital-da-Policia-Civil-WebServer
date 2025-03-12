@@ -9,22 +9,26 @@
     </tr>
     </thead>
     <tbody>
+        {{range .}}
     <tr>
-        <td>IP 905.24</td>
-        <td>IP</td>
-        <td>16/10/2024</td>
+        <td>{{.Nome}}</td>
+        <td>{{.Categoria}}</td>
+        <td>{{.UpdatedAt}}</td>
         <td>
-            <button>
+            <button id="{{.ID}}" class="btnDownload">
                 <span class="material-symbols-outlined">download</span>
             </button>
-            <button>
-                <span class="material-symbols-outlined">edit</span>
-            </button>
-            <button>
+            <a href="/index/documentos/{{.ID}}">
+                <button>
+                    <span class="material-symbols-outlined">edit</span>
+                </button>
+            </a>
+            <button id="{{.ID}}" class="btnDelete">
                 <span class="material-symbols-outlined">delete</span>
             </button>
         </td>
     </tr>
+        {{end}}
     </tbody>
 </table>
 {{end}}

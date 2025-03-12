@@ -12,7 +12,7 @@ type Gerenciador struct {
 }
 
 func Construtor() Gerenciador {
-	return Gerenciador{diretorio: "/arquivos"}
+	return Gerenciador{diretorio: "./arquivos"}
 }
 
 func (g *Gerenciador) GetDiretorio() string {

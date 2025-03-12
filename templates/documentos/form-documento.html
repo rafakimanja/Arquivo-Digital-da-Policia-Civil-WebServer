@@ -10,35 +10,69 @@
     {{template "sidebar" }}
     <div>
         <h1>Adiconar Arquivo</h1>
-        <form method='post'>
-            <div>
-                <label >Nome do Arquivo:</label>
-                <input type="text" placeholder="Nome do Arquivo"/>
-            </div>
-            <div>
-                <label>Ano:</label>
-                <input type="text" placeholder='Informe o ano' />
-            </div>
-            <div>
-                <label>Tipo de Arquivo:</label>
-                <select name="categoria" >
-                    <option value="">Escolha</option>
-                    <option value="IP">IP</option>
-                    <option value="TC">TC</option>
-                    <option value="PAI">PAI</option>
-                    <option value="Carta Precatoria">Cart Prec</option>
-                    <option value="Outro">Outro</option>
-                </select>
-            </div>
-            <div>
-                <label>Buscar</label>
-                <input type="file" name="" id="">
-            </div>
-            <div>
-                <button type="submit">Salvar</button>
-                <button>Cancelar</button>
-            </div>
-        </form>
-</div>
+
+        {{ if .Upload }}
+            <form onsubmit="submitForm(event)">
+                <div>
+                    <label >Nome do Arquivo:</label>
+                    <input type="text" name="nome" id="nome" value="{{.Documento.Nome}}" placeholder="Nome do Arquivo"/>
+                </div>
+                <div>
+                    <label>Ano:</label>
+                    <input type="text" name="ano" id="ano" value="{{.Documento.Ano}}" placeholder='Informe o ano'/>
+                </div>
+                <div>
+                    <label>Tipo de Arquivo:</label>
+                    <select name="categoria" name="categoria" id="categoria" >
+                        <option value="">Escolha</option>
+                        <option value="IP" {{ if eq .Documento.Categoria "IP" }}selected{{ end }}>IP</option>
+                        <option value="TC" {{ if eq .Documento.Categoria "TC" }}selected{{ end }}>TC</option>
+                        <option value="PAI" {{ if eq .Documento.Categoria "PAI" }}selected{{ end }}>PAI</option>
+                        <option value="Carta Precatoria" {{ if eq .Documento.Categoria "Carta Precatoria" }}selected{{ end }}>Cart Prec</option>
+                        <option value="Outro" {{ if eq .Documento.Categoria "Outro" }}selected{{ end }}>Outro</option>
+                    </select>
+                </div>
+                <div>
+                    <label>Buscar</label>
+                    <input type="file" name="arquivo" id="arquivo">
+                </div>
+                <div>
+                    <button type="submit">Salvar</button>
+                    <button>Cancelar</button>
+                </div>
+            </form>
+        {{ else }}
+            <form method='post' enctype="multipart/form-data" action="/index/documentos">
+                <div>
+                    <label >Nome do Arquivo:</label>
+                    <input type="text" placeholder="Nome do Arquivo"/>
+                </div>
+                <div>
+                    <label>Ano:</label>
+                    <input type="text" placeholder='Informe o ano' />
+                </div>
+                <div>
+                    <label>Tipo de Arquivo:</label>
+                    <select name="categoria" >
+                        <option value="">Escolha</option>
+                        <option value="IP">IP</option>
+                        <option value="TC">TC</option>
+                        <option value="PAI">PAI</option>
+                        <option value="Carta Precatoria">Cart Prec</option>
+                        <option value="Outro">Outro</option>
+                    </select>
+                </div>
+                <div>
+                    <label>Buscar</label>
+                    <input type="file" name="" id="">
+                </div>
+                <div>
+                    <button type="submit">Salvar</button>
+                    <button>Cancelar</button>
+                </div>
+            </form>
+        {{end}}
+    </div>
+<script src="/static/js/update-documento.js"></script>
 </body>
 </html>
