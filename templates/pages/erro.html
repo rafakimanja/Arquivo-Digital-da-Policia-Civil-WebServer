@@ -3,11 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="/assets/css/erro.css">
+    <title>Error Page</title>
 </head>
 <body>
-    <h1>OPSS !!!  <span>ERRO {{.code}}</span> </h1>
-    <h1>{{.message}}</h1>
-    <h3>Volte a <a href="/index/">pagina inicial</a></h3>
+    <div class="bg-erro">
+        <span class="code">{{.code}}</span>
+        <p class="message">{{.message}}</p>
+        <a href="/index/"><button>Voltar</button></a>
+    </div>
+    <script>
+        let span = document.querySelector('.code')
+        let codigo = span.textContent.split("")
+
+        codigo[0] = `<span style="color: rgb(212, 23, 23);">${codigo[0]}</span>`
+        codigo[2] = `<span style="color: rgb(25, 25, 201);">${codigo[2]}</span>`
+
+        span.innerHTML = codigo.join("")
+    </script>
 </body>
 </html>
