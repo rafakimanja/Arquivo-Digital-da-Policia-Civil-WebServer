@@ -10,9 +10,8 @@
     {{template "sidebar" }}
     <div>
         <h1>Adiconar Arquivo</h1>
-
         {{ if .Upload }}
-            <form onsubmit="submitForm(event)">
+            <form id="{{.Documento.ID}}" class="form-update" onsubmit="updateForm(event)">
                 <div>
                     <label >Nome do Arquivo:</label>
                     <input type="text" name="nome" id="nome" value="{{.Documento.Nome}}" placeholder="Nome do Arquivo"/>
@@ -35,44 +34,46 @@
                 <div>
                     <label>Buscar</label>
                     <input type="file" name="arquivo" id="arquivo">
+                    <p>Limite de arquivos de 20Mb</p>
                 </div>
                 <div>
                     <button type="submit">Salvar</button>
-                    <button>Cancelar</button>
+                    <a href="/index/documentos"><button type="button">Cancelar</button></a>
                 </div>
             </form>
         {{ else }}
-            <form method='post' enctype="multipart/form-data" action="/index/documentos">
-                <div>
-                    <label >Nome do Arquivo:</label>
-                    <input type="text" placeholder="Nome do Arquivo"/>
-                </div>
-                <div>
-                    <label>Ano:</label>
-                    <input type="text" placeholder='Informe o ano' />
-                </div>
-                <div>
-                    <label>Tipo de Arquivo:</label>
-                    <select name="categoria" >
-                        <option value="">Escolha</option>
-                        <option value="IP">IP</option>
-                        <option value="TC">TC</option>
-                        <option value="PAI">PAI</option>
-                        <option value="Carta Precatoria">Cart Prec</option>
-                        <option value="Outro">Outro</option>
-                    </select>
-                </div>
-                <div>
-                    <label>Buscar</label>
-                    <input type="file" name="" id="">
-                </div>
-                <div>
-                    <button type="submit">Salvar</button>
-                    <button>Cancelar</button>
-                </div>
-            </form>
+        <form class="form-update" onsubmit="postForm(event)">
+            <div>
+                <label >Nome do Arquivo:</label>
+                <input type="text" name="nome" id="nome" placeholder="Nome do Arquivo"/>
+            </div>
+            <div>
+                <label>Ano:</label>
+                <input type="text" name="ano" id="ano" placeholder='Informe o ano'/>
+            </div>
+            <div>
+                <label>Tipo de Arquivo:</label>
+                <select name="categoria" name="categoria" id="categoria">
+                    <option value="">Escolha</option>
+                    <option value="IP">IP</option>
+                    <option value="TC">TC</option>
+                    <option value="PAI">PAI</option>
+                    <option value="Carta Precatoria">Cart Prec</option>
+                    <option value="Outro">Outro</option>
+                </select>
+            </div>
+            <div>
+                <label>Buscar</label>
+                <input type="file" name="arquivo" id="arquivo">
+                <p>Limite de arquivos de 20Mb</p>
+            </div>
+            <div>
+                <button type="submit">Salvar</button>
+                <a href="/index/documentos"><button type="button">Cancelar</button></a>
+            </div>
+        </form>
         {{end}}
     </div>
-<script src="/static/js/update-documento.js"></script>
+<script src="/static/js/form-documento.js"></script>
 </body>
 </html>

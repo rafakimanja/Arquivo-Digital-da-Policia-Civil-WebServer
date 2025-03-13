@@ -15,7 +15,7 @@
         <td>{{.Categoria}}</td>
         <td>{{.UpdatedAt}}</td>
         <td>
-            <button id="{{.ID}}" class="btnDownload">
+            <button value="{{.ID}}" class="btnDownload">
                 <span class="material-symbols-outlined">download</span>
             </button>
             <a href="/index/documentos/{{.ID}}">
@@ -23,7 +23,7 @@
                     <span class="material-symbols-outlined">edit</span>
                 </button>
             </a>
-            <button id="{{.ID}}" class="btnDelete">
+            <button value="{{.ID}}" class="btnDelete">
                 <span class="material-symbols-outlined">delete</span>
             </button>
         </td>

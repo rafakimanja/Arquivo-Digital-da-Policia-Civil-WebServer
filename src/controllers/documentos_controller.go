@@ -22,6 +22,22 @@ func ExibeTodosDocumentos(c *gin.Context) {
 	})
 }
 
+//teste function
+func ListaDocumentos(c *gin.Context){
+	limit := c.DefaultQuery("limit", "10")
+	offset := c.DefaultQuery("offset", "1")
+
+	limitInt, _ := strconv.Atoi(limit)
+	offsetInt, _ := strconv.Atoi(offset)
+
+	var documentos []models.Documento
+	database.DB.Limit(limitInt).Offset(offsetInt).Find(&documentos)
+	c.JSON(http.StatusOK, gin.H{
+		"message": "Pagina "+fmt.Sprint(limitInt/10),
+		"documentos": documentos,
+	})
+}
+
 func ExibeFormDocumentos(c *gin.Context) {
 	c.HTML(http.StatusOK, "form-documento.html", nil)
 }
@@ -58,7 +74,7 @@ func CriaNovoArquivo(c *gin.Context) {
 		return
 	}
 
-	c.Redirect(303, "/index/documentos/form")
+	c.Status(http.StatusCreated)
 }
 
 func BuscaArquivo(c *gin.Context) {
@@ -88,8 +104,7 @@ func BaixaArquivo(c *gin.Context) {
 	database.DB.First(&documento, idArq)
 	
 	if documento.ID == 0 {
-		c.JSON(http.StatusNotFound, gin.H{
-			"error": "Arquivo nao encontrado!"})
+		c.Status(http.StatusNotFound)
 		return
 	}
 
@@ -119,8 +134,7 @@ func DeletaArquivo(c *gin.Context) {
 	database.DB.First(&documento, id)
 
 	if documento.ID == 0 {
-		c.JSON(http.StatusNotFound, gin.H{
-			"error": "Arquivo nao encontrado!"})
+		c.Status(http.StatusNotFound)
 		return
 	}
 
@@ -151,9 +165,7 @@ func DeletaArquivo(c *gin.Context) {
 		return
 	}
 
-	c.JSON(http.StatusOK, gin.H{
-		"message": "Arquivo deletado com sucesso!"})
-
+	c.Status(http.StatusOK)
 }
 
 func AtualizaArquivo(c *gin.Context) {
@@ -219,5 +231,5 @@ func AtualizaArquivo(c *gin.Context) {
 		return
 	}
 
-	c.Redirect(http.StatusSeeOther, "/index/documentos")
+	c.Status(http.StatusOK)
 }

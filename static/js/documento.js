@@ -1,10 +1,11 @@
-let btnDelete = document.querySelector('.btnDelete')
-let btnDownload = document.querySelector('.btnDownload')
+document.querySelectorAll('.btnDownload').forEach((btn) => {
+    btn.addEventListener("click", () => baixaArquivo(btn.value))
+})
 
-let id = btnDelete.getAttribute("id")
+document.querySelectorAll('.btnDelete').forEach((btn) => {
+    btn.addEventListener("click", () => deletaArquivo(btn.value))
+})
 
-btnDelete.addEventListener('click', () => deletaArquivo(id))
-btnDownload.addEventListener('click', () => baixaArquivo(id))
 
 async function deletaArquivo(id) {
     let url = `http://localhost:5000/index/documentos/${id}`
