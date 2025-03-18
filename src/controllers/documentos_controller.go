@@ -25,7 +25,7 @@ func ExibeTodosDocumentos(c *gin.Context) {
 //teste function
 func ListaDocumentos(c *gin.Context){
 	limit := c.DefaultQuery("limit", "10")
-	offset := c.DefaultQuery("offset", "1")
+	offset := c.DefaultQuery("offset", "0")
 
 	limitInt, _ := strconv.Atoi(limit)
 	offsetInt, _ := strconv.Atoi(offset)
@@ -33,7 +33,7 @@ func ListaDocumentos(c *gin.Context){
 	var documentos []models.Documento
 	database.DB.Limit(limitInt).Offset(offsetInt).Find(&documentos)
 	c.JSON(http.StatusOK, gin.H{
-		"message": "Pagina "+fmt.Sprint(limitInt/10),
+		"message": "Pagina "+fmt.Sprint((offsetInt/10)),
 		"documentos": documentos,
 	})
 }

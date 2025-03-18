@@ -26,6 +26,10 @@ func ExibeTelaNotFound(c *gin.Context) {
 	})
 }
 
+func ExibeTabela(c *gin.Context){
+	c.HTML(200, "tabela.html", nil)
+}
+
 func LoginAcess(c *gin.Context) {
 
 	type LoginUser struct {

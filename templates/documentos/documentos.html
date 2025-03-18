@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="/static/js/documento.js" defer></script>
     <title>Documentos</title>
 </head>
 <body>
@@ -11,8 +12,8 @@
     {{template "sidebar" }}
     <div>
         {{template "filtro-doc"}}
-        {{template "table-doc"  .documentos}}
+         <div id="root"></div>
     </div>
-<script src="/static/js/documento.js"></script>
+<script src="/static/js/tabela.js"></script>
 </body>
 </html>

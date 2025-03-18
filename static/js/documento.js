@@ -1,11 +1,3 @@
-document.querySelectorAll('.btnDownload').forEach((btn) => {
-    btn.addEventListener("click", () => baixaArquivo(btn.value))
-})
-
-document.querySelectorAll('.btnDelete').forEach((btn) => {
-    btn.addEventListener("click", () => deletaArquivo(btn.value))
-})
-
 
 async function deletaArquivo(id) {
     let url = `http://localhost:5000/index/documentos/${id}`
