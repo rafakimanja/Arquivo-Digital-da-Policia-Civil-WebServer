@@ -14,10 +14,14 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func ExibeTodosDocumentos(c *gin.Context) {
+func ExibeTelaDocumentos(c *gin.Context){
+	c.HTML(http.StatusOK, "documentos.html", nil)
+}
+
+func ExibeTodosDocumentos(c *gin.Context){
 	var documentos []models.Documento
 	database.DB.Find(&documentos)
-	c.HTML(http.StatusOK, "documentos.html", gin.H{
+	c.JSON(http.StatusOK, gin.H{
 		"documentos": documentos,
 	})
 }

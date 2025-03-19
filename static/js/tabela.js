@@ -1,96 +1,94 @@
-const root = document.getElementById('root');
+let dados = []
 
-let limit = 10;
-let offset = 0;
-
-async function buscaArquivos(limit, offset) {
-    const url = `http://localhost:5000/teste?limit=${limit}&offset=${offset}`;
+async function buscaArquivos() {
+    const url = `http://localhost:5000/index/documentos/json`;
     try {
         const resp = await fetch(url, { method: 'GET' });
         const dados = await resp.json();
         return dados.documentos;
     } catch (erro) {
-        console.log('Erro ao buscar arquivos:', erro);
+        alert('Erro ao buscar os arquivos!')
+        console.log(erro)        
     }
 }
 
-async function carregarDados() {
-    const documentos = await buscaArquivos(limit, offset);
+async function carregaDados(){
+    dados = await buscaArquivos()
+    console.log(dados)
+    criaTabela(dados)
+}
+
+// variaveis
+let tabela = document.querySelector('#tabela')
+
+let paginaAtual = 0
+const itensPorPagina = 10
+// =-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+function preencheTabela(dados){
     
-    if (!documentos) {
-        console.error("Nenhum dado encontrado");
-        return;
+    let tbody = document.querySelector('#content')
+    tbody.innerHTML = ''
+
+    if(dados.length < 1) {
+        tabela.innerHTML = '<h3>Sem dados cadastrados!</h3>'
+        return
     }
 
-    // Criar a tabela se ainda não existir
-    let tabela = document.getElementById('tabela');
-    if (!tabela) {
-        tabela = document.createElement('table');
-        tabela.id = 'tabela';
-        tabela.innerHTML = `
-            <thead>
-                <tr>
-                    <th>Nome</th>
-                    <th>Categoria</th>
-                    <th>Última Alteração</th>
-                    <th><th>
-                </tr>
-            </thead>
-            <tbody></tbody>
-        `;
-        root.appendChild(tabela);
-    }
-
-    // Preencher o corpo da tabela
-    const tbody = tabela.querySelector('tbody');
-    tbody.innerHTML = ''; // Limpar dados anteriores
-
-    documentos.forEach(doc => {
-        const row = document.createElement('tr');
-        row.innerHTML = `
-            <td>${doc.Nome}</td>
-            <td>${doc.Categoria || 'N/A'}</td>
-            <td>${new Date(doc.UpdatedAt).toLocaleString()}</td>
+    dados.forEach(element => {
+        const linha = document.createElement('tr')
+        linha.innerHTML = `
+            <td>${element.Nome}</td>
+            <td>${element.Ano}</td>
+            <td>${new Date(element.UpdatedAt).toLocaleString()}</td>
             <td>
-                <button value="${doc.ID}" class="btnDownload" onClick="baixaArquivo(${doc.ID})">
+                <button value="${element.ID}" class="btnDownload" onClick="baixaArquivo(${element.ID})">
                     <span class="material-symbols-outlined">download</span>
                 </button>
-                <a href="/index/documentos/${doc.ID}">
+                <a href="/index/documentos/${element.ID}">
                     <button>
                         <span class="material-symbols-outlined">edit</span>
                     </button>
                 </a>
-                <button value="${doc.ID}" class="btnDelete" onClick="deletaArquivo(${doc.ID})">
+                <button value="${element.ID}" class="btnDelete" onClick="deletaArquivo(${element.ID})">
                     <span class="material-symbols-outlined">delete</span>
                 </button>
             </td>
-        `;
-        tbody.appendChild(row);
+        `
+        tbody.appendChild(linha)
     });
+}
 
-    // Criar botões de paginação se ainda não existirem
-    let pagination = document.getElementById('pagination');
-    if (!pagination) {
-        pagination = document.createElement('div');
-        pagination.id = 'pagination';
-        pagination.innerHTML = `
-            <button id="prevPage">Anterior</button>
-            <button id="nextPage">Próximo</button>
-        `;
-        root.appendChild(pagination);
-        
-        document.getElementById('prevPage').addEventListener('click', () => {
-            if (offset > 0) {
-                offset -= limit;
-                carregarDados();
-            }
-        });
+function criaTabela(array){
 
-        document.getElementById('nextPage').addEventListener('click', () => {
-            offset += limit;
-            carregarDados();
-        });
+    let totalPaginasSpan = document.querySelector('#total-paginas')
+    let paginaAtualSpan = document.querySelector('#pagina-atual')
+
+    let qtdPaginas = Math.ceil(array.length / itensPorPagina)
+
+    let inicio = paginaAtual * itensPorPagina
+    let fim = inicio + itensPorPagina
+
+    let dadosPaginaAtual = array.slice(inicio, fim)
+
+    preencheTabela(dadosPaginaAtual)
+    paginaAtualSpan.innerHTML = `${paginaAtual+1}`
+    totalPaginasSpan.innerHTML = `${qtdPaginas}`
+}
+
+function voltaDados(){
+    if(paginaAtual > 0){
+        paginaAtual--;
+        criaTabela(dados)
     }
 }
 
-carregarDados();
+function avancaDados(){
+    let maxPaginas = Math.ceil(dados.length / itensPorPagina)
+    if(paginaAtual < maxPaginas-1){
+        paginaAtual++
+        criaTabela(dados)
+    }
+}
+
+carregaDados()

@@ -1,0 +1,23 @@
+{{ define "tabela-doc"}}
+<div id="tabela">
+    <table>
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Ano</th>
+                <th>Ultima Modificacao</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody id="content"></tbody>
+    </table>
+    <div class="bottom-table">
+        <button onclick="voltaDados()">Anterior</button>
+        <div class="spans">
+            <span id="pagina-atual"></span>
+            <span id="total-paginas"></span>
+        </div>
+        <button onclick="avancaDados()">Proximo</button>
+    </div>
+</div>
+{{ end }}
