@@ -1,11 +1,14 @@
+function mostraSenha() {
+    const inputSenha = document.getElementById("input-senha");
+    const iconOlho = document.getElementById("icon-olho");
 
-let btnLogin = document.querySelector('#btnLogin')
-
-btnLogin.addEventListener('click', Login)
-
-function Login(){
-    let usuario = document.querySelector('#rg').value
-    let senha = document.querySelector('#senha').value
-
-    alert(`Login User: ${usuario} | ${senha}`)
+    if (inputSenha.type === "password") {
+        inputSenha.type = "text";
+        iconOlho.classList.remove("bi-eye");
+        iconOlho.classList.add("bi-eye-slash");
+    } else {
+        inputSenha.type = "password";
+        iconOlho.classList.remove("bi-eye-slash");
+        iconOlho.classList.add("bi-eye");
+    }
 }
