@@ -59,7 +59,7 @@ func LoginAcess(c *gin.Context) {
 	token := services.GenerateToken()
 	session.Token = token
 	session.UserID = user.ID
-	session.Expired = time.Now().Add(time.Minute * 1)
+	session.Expired = time.Now().Add(time.Minute * 15)
 
 	if err := database.DB.Create(&session).Error; err != nil {
 		fmt.Println("Erro ao salvar sessão no banco:", err)

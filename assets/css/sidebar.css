@@ -1,0 +1,15 @@
+ul {
+    background-color: var(--cor-principal);
+    list-style: none;
+}
+
+
+a:link{
+    color: var(--cor-textos);
+    font-style: none;
+}
+
+a:visited{
+    color: var(--cor-textos);
+    font-style: none;
+}
