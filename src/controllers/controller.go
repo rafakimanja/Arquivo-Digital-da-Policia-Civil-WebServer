@@ -29,8 +29,8 @@ func ExibeTelaNotFound(c *gin.Context) {
 func LoginAcess(c *gin.Context) {
 
 	type LoginUser struct {
-		RG    string
-		Senha string
+		Usuario    string
+		Senha 	   string
 	}
 
 	var userLogin LoginUser
