@@ -17,12 +17,12 @@
             <h2 class='titulo-form' >Login</h2>
             <form method="post" action="/login">
                 <div class='input-group'>
-                    <input type="text" name="usuario" required />
-                    <label htmlFor="">USUARIO</label>
+                    <input type="text" name="usuario" id="input-usuario" required />
+                    <label for="input-usuario">USUARIO</label>
                 </div>
                 <div class='input-group'>
                     <input type="password" name="senha" id="input-senha" required />
-                    <label htmlFor="">SENHA</label>
+                    <label for="input-senha" >SENHA</label>
                     <i class="bi bi-eye" id="icon-olho" onclick="mostraSenha()"></i>
                 </div>
                 <a href="#">Esqueceu a Senha?</a>

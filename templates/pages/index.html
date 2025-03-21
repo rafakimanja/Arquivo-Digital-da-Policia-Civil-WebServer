@@ -4,19 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/assets/css/index.css">
+    <link rel="stylesheet" href="/assets/css/sidebar.css">
     <title>Index</title>
 </head>
 <body>
     {{ template "header" }}
     {{ template "sidebar" }}
-    <div>
-        <div>
+
+    <div class="bg-index">
+        <div class="space">
             <p>Adicionar Arquivo</p>
-            <span class="material-symbols-outlined">add</span>
+            <i class="bi bi-plus-circle"></i>
         </div>
-        <div>
+        <div class="space">
             <p>Buscar Arquivo</p>
-            <span class="material-symbols-outlined">search</span>
+            <i class="bi bi-search"></i>
         </div>
     </div>
 </body>

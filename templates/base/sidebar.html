@@ -1,18 +1,47 @@
 {{define "sidebar"}}
-<head>
-    <link rel="stylesheet" href="/assets/css/sidebar.css">
-</head>
-<ul>
-    <li><a href="/index">Home</a></li>
-    <li><a href="/index/documentos/form">Adicionar</a></li>
-    <li><a href="/index/documentos">Pesquisar</a></li>
-    <li><a href="/index/config">Configurações</a></li>
-    <li><a href="/index/usuarios">Usuários Cad.</a></li>
-    <li><a href="#">Ajuda</a></li>
-    <li>
-        <form action="/index/logout" method="post">
-            <button type="submit">Sair</button>
-        </form>
-    </li>
-</ul>
+<nav class="menu">
+    <ul>
+        <li>
+            <a href="/index" class="sidebar-link">
+                <i class="bi bi-house"></i>
+                <span>Home</span>
+            </a>
+        </li>
+        <li>
+            <a href="/index/documentos/form" class="sidebar-link">
+                <i class="bi bi-plus-lg"></i>
+                <span>Adicionar</span>
+            </a>
+        </li>
+        <li>
+            <a href="/index/documentos" class="sidebar-link">
+                <i class="bi bi-search"></i>
+                <span>Pesquisar</span>
+            </a>
+        </li>
+        <li>
+            <a href="/index/config" class="sidebar-link">
+                <i class="bi bi-gear"></i>
+                <span>Configurações</span>
+            </a>
+        </li>
+        <li>
+            <a href="/index/usuarios" class="sidebar-link">
+                <i class="bi bi-people-fill"></i>
+                <span>Usuários Cad.</span>
+            </a>
+        </li>
+        <li>
+            <a href="#" class="sidebar-link">
+                <i class="bi bi-question-circle"></i>
+                <span>Ajuda</span>
+            </a>
+        </li>
+        <li class="exit">
+            <form action="/index/logout" method="post">
+                <button type="submit"><i class="bi bi-box-arrow-left"></i>Sair</button>
+            </form>
+        </li>
+    </ul>
+</nav>
 {{end}}
