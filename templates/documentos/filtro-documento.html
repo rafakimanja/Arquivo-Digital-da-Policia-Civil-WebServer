@@ -1,8 +1,8 @@
 {{ define "filtro-doc"}}
-<div>
+<div id="filtro">
   <div>
     <label>Categoria</label>
-    <select>
+    <select id="categoria">
       <option value="">Escolha</option>
       <option value="IP">IP</option>
       <option value="TC">TC</option>
@@ -13,17 +13,17 @@
   </div>
   <div>
     <label>Ano</label>
-    <input type="text" placeholder="2024" />
+    <input type="text" id="ano" placeholder="2024" />
   </div>
   <div>
     <label>Nome</label>
-    <input type="text" placeholder="Digite o nome" />
+    <input type="text" id="nome" placeholder="Digite o nome" />
   </div>
   <div>
-    <button>
+    <button onclick="adicionaFiltro()">
       <span class="material-symbols-outlined">search</span>
     </button>
   </div>
 </div>
-
+<div id="filtros-ativos"></div>
 {{end}}
