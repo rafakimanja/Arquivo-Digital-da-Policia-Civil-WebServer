@@ -1,4 +1,4 @@
-.menu{
+.sidebar{
     background-color: var(--cor-principal);
     height: 92.7vh;
     width: 16rem;
@@ -9,7 +9,7 @@
     outline: none;
 }
 
-.menu ul{
+.sidebar ul{
     list-style: none;
     padding: 0.5em 0;
     margin: 0;
@@ -18,7 +18,7 @@
     height: 100%;
 }
 
-.menu li{
+.sidebar li{
     padding: 0.5em 1em 0.5em 3em;
     font-size: 0.95em;
     font-weight:normal;
@@ -30,11 +30,11 @@
     margin-bottom: 10px;
 }
 
-.menu li:focus{
+.sidebar li:focus{
     outline: none;
 }
 
-.menu li span{
+.sidebar li span{
     font-size: 18px;
     font-weight: bold;
     margin-left: 12px;

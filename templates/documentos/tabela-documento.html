@@ -1,30 +1,59 @@
 {{ define "table-doc" }}
-<table>
-    <thead>
-    <tr>
-        <th>Documento</th>
-        <th>Categoria</th>
-        <th>Última Alteração</th>
-        <th></th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-        <td>IP 905.24</td>
-        <td>IP</td>
-        <td>16/10/2024</td>
-        <td>
-            <button>
-                <span class="material-symbols-outlined">download</span>
-            </button>
-            <button>
-                <span class="material-symbols-outlined">edit</span>
-            </button>
-            <button>
-                <span class="material-symbols-outlined">delete</span>
-            </button>
-        </td>
-    </tr>
-    </tbody>
-</table>
+<div id="tabela" class="tabela-documentos">
+    <table class="table table-bordered">
+        <thead class="table-dark">
+            <tr>
+                <th class="col">Nome</th>
+                <th class="col">Ano</th>
+                <th class="col">Categoria</th>
+                <th class="col">Última Alteração</th>
+                <th class="col"></th>
+            </tr>
+        </thead>
+        <tbody id="content">
+            <tr>
+                <td>IP 905.24</td>
+                <td>2024</td>
+                <td>IP</td>
+                <td>16/10/2024</td>
+                <td>
+                    <button class="btn btn-success">
+                        <i class="bi bi-download"></i>
+                    </button>
+                    <button class="btn btn-warning">
+                        <i class="bi bi-pencil"></i>
+                    </button>
+                    <button class="btn btn-danger">
+                        <i class="bi bi-trash"></i>
+                    </button>
+                </td>
+            </tr>
+            <tr>
+                <td>IP 700.23</td>
+                <td>2023</td>
+                <td>IP</td>
+                <td>02/11/2023</td>
+                <td>
+                    <button class="btn btn-success">
+                        <i class="bi bi-download"></i>
+                    </button>
+                    <button class="btn btn-warning">
+                        <i class="bi bi-pencil"></i>
+                    </button>
+                    <button class="btn btn-danger">
+                        <i class="bi bi-trash"></i>
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="bottom-table">
+        <button onclick="voltaDados()"><i class="bi bi-caret-left-fill"></i></button>
+        <div class="spans">
+            <span id="pagina-atual">1</span>
+            <span id="total-paginas">3</span>
+        </div>
+        <button onclick="avancaDados()"><i class="bi bi-caret-right-fill"></i></button>
+    </div>
+</div>
 {{end}}

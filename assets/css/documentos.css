@@ -1,0 +1,77 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap');
+
+:root{
+    --cor-principal: black;
+    --cor-secundaria: white;
+    --cor-fundo: rgba(255, 255, 255, 0.5);
+    --cor-borda: rgba(0, 0, 0, 0.15);
+    --sombra: 7px 10px 20px 1px rgba(0, 0, 0, 0.3);
+    --fonte: "JetBrains Mono", monospace;
+}
+
+body{
+    margin: 0;
+    padding: 0;
+    font-family: var(--fonte);
+}
+
+.bg-documentos{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 5%;
+}
+
+.bg-filtro{
+    width: 40%;
+    border-bottom: solid 1px var(--cor-borda);
+    border-right: solid 1px var(--cor-borda);
+    border-radius: 5px;
+}
+
+.btn-pesquisar{
+    display: flex;
+    justify-content: right;
+}
+
+#btn-pesquisar{
+    width: 20%;
+    margin-right: 2rem;
+}
+
+.row{
+    padding: 1rem;
+}
+
+.tabela-documentos{
+    width: 50%;
+    margin-top: 10rem;
+    margin-left: 10rem;
+}
+
+.btn-warning{
+    color: white;
+}
+
+.btn-warning:hover{
+    color: white;
+}
+
+.bottom-table{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-left: 1rem;
+    color: var(--cor-principal);
+    font-weight: bold;
+}
+
+.bottom-table button{
+    border: none;
+    border-radius: 10px;
+}
+
+.bottom-table span{
+    padding: 0.25rem;
+}

@@ -1,29 +1,29 @@
 {{ define "filtro-doc"}}
-<div>
-  <div>
-    <label>Categoria</label>
-    <select>
-      <option value="">Escolha</option>
-      <option value="IP">IP</option>
-      <option value="TC">TC</option>
-      <option value="PAI">PAI</option>
-      <option value="Carta Precatoria">Cart Prec</option>
-      <option value="Outro">Outro</option>
-    </select>
+<div class="bg-filtro" id="filtro">
+  <div class="row g-3">
+    <div class="col">
+      <input type="text" class="form-control" placeholder="Nome" >
+    </div>
+    <div class="col">
+      <input type="text" class="form-control" placeholder="Ano">
+    </div>
+    <div class="col">
+      <select name="" class="form-select">
+        <option value="">Escolha</option>
+        <option value="IP">IP</option>
+        <option value="TC">TC</option>
+        <option value="PAI">PAI</option>
+        <option value="Carta Precatoria">Cart Prec</option>
+        <option value="Outro">Outro</option>
+      </select>
+    </div>
   </div>
-  <div>
-    <label>Ano</label>
-    <input type="text" placeholder="2024" />
-  </div>
-  <div>
-    <label>Nome</label>
-    <input type="text" placeholder="Digite o nome" />
-  </div>
-  <div>
-    <button>
-      <span class="material-symbols-outlined">search</span>
-    </button>
+  <div class="row btn-pesquisar">
+    <button type="button" class="btn btn-success" id="btn-pesquisar" onclick="adicionaFiltro()"><i class="bi bi-search"></i> Pesquisar</button>
   </div>
 </div>
-
+<div id="filtros-ativos"></div>
 {{end}}
+
+
+

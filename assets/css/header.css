@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap');
 
-header{
+#myHeader{
     margin: 0;
     background-color: black;
     color: white;
@@ -11,8 +11,9 @@ header{
     height: 6rem;
 }
 
-.content{
+.header-content{
     width: 20%;
+    height: 100%;
     display: flex;
     align-items: center;
     justify-content:flex-end;
@@ -20,7 +21,11 @@ header{
     gap: 2.5rem;
 }
 
-.content i{
+.header-content h2{
+    font-size: 1.75rem;
+}
+
+.header-content i{
     font-size: 2.5rem;
     right: 50px;
 }
