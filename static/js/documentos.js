@@ -5,11 +5,14 @@ async function deletaArquivo(id) {
         const resp = await fetch(url, {
             method: 'DELETE'
         })
-        if(resp.status === 200) alert('Arquivo deleta com sucesso!')
+        if(resp.status === 200) alert('Arquivo deletado com sucesso!')
         if(resp.status === 404) alert('Arquivo nao encontrado!')
     } catch (error){
+        alert('Erro ao excluir o documento!')
         return
-    } 
+    } finally {
+        window.location.href = "/index/documentos"
+    }
 }
 
 async function baixaArquivo(id) {

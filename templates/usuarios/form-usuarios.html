@@ -2,41 +2,74 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <title>Formulário</title>
+    <title>Formulário Usuario</title>
 </head>
 <body>
     {{ template "header" }}
     {{ template "sidebar"}}
     <div>
-      <h1>Adicionar Usuario</h1>
-      <form method='post'>
-      <div>
-        <div>
-          <label>Nome do Usuario:</label>
-          <input type="text" placeholder='Nome do usuario'/>
-        </div>
-        <div>
-          <label>RG do Usuario:</label>
-          <input type="text" placeholder='RG do usuario'/>
-        </div>
-        <div>
-          <label>Senha:</label>
-          <input type="password" placeholder='Digite a senha'/>
-        </div>
-        <div>
-          <label>Digite novamente a senha:</label>
-          <input type="password" placeholder='Digite a senha novamente'/>
-        </div>
-        <div>
-          <label>Admin:</label>
-          <input type="checkbox"/>
-        </div>
-      </div>
-      <div>
-        <button type='submit'>Salvar</button>
-        <button>Cancelar</button>
-      </div>
-      </Form>
+      {{ if .Update }}
+        <h1>Atualiza Usuario</h1>
+          <form id="{{.Usuario.ID}}" class="form-update" onsubmit="updateForm(event)">
+            <div>
+              <div>
+                <label>Nome do Usuario:</label>
+                <input type="text" id="nome" value="{{.Usuario.Nome}}" placeholder='Nome do usuario'/>
+              </div>
+              <div>
+                <label>Nome de Usuario:</label>
+                <input type="text" id="nickname" value="{{.Usuario.RG}}" placeholder='Nome de usuario'/>
+              </div>
+              <div>
+                <label>Senha:</label>
+                <input type="password" id="senha" value="{{.Usuario.Senha}}" placeholder='Digite a senha'/>
+              </div>
+              <div>
+                <label>Digite novamente a senha:</label>
+                <input type="password" id="senha-confirm" value="{{.Usuario.Senha}}" placeholder='Digite a senha novamente'/>
+              </div>
+              <div>
+                <label>Admin:</label>
+                <input type="checkbox" id="admin" {{if .Usuario.Admin}} checked {{ end }} />
+              </div>
+            </div>
+            <div>
+              <button type='submit'>Salvar</button>
+              <a href="/index/usuarios"><button>Cancelar</button></a>
+            </div>
+          </form>
+      {{ else }}
+        <h1>Novo Usuario</h1>
+          <form class="form-update" onsubmit="postForm(event)">
+            <div>
+              <div>
+                <label>Nome do Usuario:</label>
+                <input type="text" id="nome" placeholder='Nome do usuario'/>
+              </div>
+              <div>
+                <label>Nome de Usuario:</label>
+                <input type="text" id="nickname" placeholder='Nome de usuario'/>
+              </div>
+              <div>
+                <label>Senha:</label>
+                <input type="password" id="senha" placeholder='Digite a senha'/>
+              </div>
+              <div>
+                <label>Digite novamente a senha:</label>
+                <input type="password" id="senha-confirm" placeholder='Digite a senha novamente'/>
+              </div>
+              <div>
+                <label>Admin:</label>
+                <input type="checkbox"/>
+              </div>
+            </div>
+            <div>
+              <button type='submit'>Salvar</button>
+              <a href="/index/usuarios"><button>Cancelar</button></a>
+            </div>
+          </form>
+      {{ end }}
     </div>
+<script src="/static/js/form-usuario.js"></script>
 </body>
 </html>

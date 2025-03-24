@@ -1,9 +1,10 @@
 {{ define "users-filter"}}
-<div>
-    <input type="text" placeholder="Pesquisar nome usuario"/>
-    <button>
+<div id="filtro">
+    <input type="text" id="nome" placeholder="Pesquisar nome usuario"/>
+    <button onclick="adicionaFiltro()">
         <span class="material-symbols-outlined">search</span>
     </button>
     <a href="/index/usuarios/form"><button>Adicionar</button></a>
 </div>
+<div id="filtros-ativos"></div>
 {{end}}

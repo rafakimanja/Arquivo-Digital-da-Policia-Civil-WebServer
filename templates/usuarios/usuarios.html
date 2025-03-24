@@ -3,17 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <title>Usuarios Cadastrados</title>
+    <script src="/static/js/usuarios.js" defer></script>
 </head>
 <body>
   {{template "header"}}
   {{template "sidebar"}}
   <div>
-      {{ if gt (len .usuarios) 0 }}
-          {{template "users-filter"}}
-          {{template "table-users" .usuarios}}
-      {{ else }}
-        <h1>Sem usuarios cadastrado</h1>
-      {{ end }}
+    {{template "users-filter"}}
+    {{template "table-users"}}
   </div>
+  <script src="/static/js/tabela-usuarios.js"></script>
 </body>
 </html>

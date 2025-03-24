@@ -3,17 +3,19 @@ package controllers
 import (
 	"adpc-webserver/src/database"
 	"adpc-webserver/src/models"
-	"fmt"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
 )
 
+func ExibeTelaUsuarios(c *gin.Context){
+	c.HTML(http.StatusOK, "usuarios.html", nil)
+}
+
 func ExibeTodosUsuarios(c *gin.Context) {
 	var usuarios []models.Usuario
 	database.DB.Find(&usuarios)
-	fmt.Println(usuarios)
-	c.HTML(http.StatusOK, "usuarios.html", gin.H{
+	c.JSON(http.StatusOK, gin.H{
 		"usuarios": usuarios,
 	})
 }
@@ -32,7 +34,7 @@ func CriaNovoUsuario(c *gin.Context) {
 		return
 	}
 	database.DB.Create(&usuario)
-	c.JSON(http.StatusOK, usuario)
+	c.Status(http.StatusCreated)
 }
 
 func BuscaUsuario(c *gin.Context) {
@@ -42,12 +44,16 @@ func BuscaUsuario(c *gin.Context) {
 	database.DB.First(&usuario, id)
 
 	if usuario.ID == 0 {
-		c.JSON(http.StatusNotFound, gin.H{
+		c.HTML(http.StatusNotFound, "erro.html", gin.H{
+			"code": http.StatusNotFound,
 			"error": "Usuario nao encontrado!",
 		})
-		return
+	} else {
+		c.HTML(http.StatusOK, "form-usuarios.html", gin.H{
+			"Update": true,
+			"Usuario": usuario,
+		})
 	}
-	c.JSON(http.StatusOK, usuario)
 }
 
 func DeletaUsuario(c *gin.Context) {
@@ -56,12 +62,12 @@ func DeletaUsuario(c *gin.Context) {
 	result := database.DB.Delete(&usuario, id)
 
 	if result.Error != nil {
-		c.JSON(http.StatusInternalServerError, gin.H{
+		c.HTML(http.StatusInternalServerError, "erro.html", gin.H{
+			"code": http.StatusInternalServerError,
 			"error": "Erro ao deletar usuario!"})
 	} else {
-		c.JSON(http.StatusOK, gin.H{
-			"message": "Usuario deletado com sucesso!"})
-	}
+		c.Status(http.StatusOK)
+	}		
 }
 
 func AtualizaUsuario(c *gin.Context) {
@@ -69,13 +75,29 @@ func AtualizaUsuario(c *gin.Context) {
 	id := c.Params.ByName("id")
 	database.DB.First(&usuario, id)
 
-	if err := c.ShouldBindJSON(&usuario); err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{
-			"error": "Erro ao atualizar usuario!"})
+	if usuario.ID == 0 {
+		c.HTML(http.StatusNotFound, "erro.html", gin.H{
+			"code": http.StatusNotFound,
+			"message": "Usuario nao encontrado!",
+		})
 		return
 	}
 
-	database.DB.Model(&usuario).UpdateColumns(usuario)
-	c.JSON(http.StatusOK, gin.H{
-		"message": "Usuario atualizado!"})
+	if err := c.ShouldBindJSON(&usuario); err != nil {
+		c.HTML(http.StatusBadRequest, "erro.html", gin.H{
+			"code": http.StatusBadRequest,
+			"error": "Erro ao atualizar usuario!",
+		})
+		return
+	}
+	
+	if err := database.DB.Model(&usuario).Updates(usuario); err != nil {
+		c.HTML(http.StatusInternalServerError, "erro.html", gin.H{
+			"code": http.StatusInternalServerError,
+			"error": "Erro ao atualizar usuario!",
+		})
+		return
+	}
+	
+	c.Status(http.StatusOK)
 }

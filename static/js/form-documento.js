@@ -36,6 +36,7 @@ async function updateForm(event) {
             alert('Arquivo atualizado com sucesso!')
         }
     } catch (error) {
+        alert('Erro ao atualizar arquivo!')
         return
     } finally {
         window.location.href = "/index/documentos"
@@ -74,6 +75,7 @@ async function postForm(event) {
             alert('Arquivo criado com sucesso!')
         }
     } catch (error) {
+        alert('Erro ao criar novo arquivo!')
         return
     } finally {
         window.location.href = "/index/documentos"
@@ -81,7 +83,7 @@ async function postForm(event) {
 }
 
 function validaForm(nome, ano, categoria, arquivo, updateArq){
-    const regexNome = new RegExp("^[A-Za-z0-9_.-]*$") 
+    const regexNome = new RegExp("^[A-Za-z0-9_.-]+$") 
     const regexAno = new RegExp("^[0-9]{4}$")
 
     if(!testeNome(nome, regexNome)) return {resp: false, message: "Nome invalido!"}

@@ -1,27 +1,22 @@
 {{ define "table-users" }}
+<div class="tabela">
     <table>
         <thead>
-        <tr>
-            <th>Nome</th>
-            <th>Admin</th>
-            <th></th>
-        </tr>
+            <tr>
+                <th>Nome</th>
+                <th>Admin</th>
+                <th></th>
+            </tr>
         </thead>
-        <tbody>
-        {{ range . }}
-        <tr>
-            <td>{{.Nome}}</td>
-            <td>{{.Admin}}</td>
-            <td>
-                <button>
-                    <span class="material-symbols-outlined">edit</span>
-                </button>
-                <button>
-                    <span class="material-symbols-outlined">delete</span>
-                </button>
-            </td>
-        </tr>
-        {{ end }}
-        </tbody>
+        <tbody id="content"></tbody>
     </table>
+    <div class="bottom-table">
+        <button onclick="voltaDados()">Anterior</button>
+        <div class="spans">
+            <span id="pagina-atual"></span>
+            <span id="total-paginas"></span>
+        </div>
+        <button onclick="avancaDados()">Proximo</button>
+    </div>
+</div>
 {{end}}

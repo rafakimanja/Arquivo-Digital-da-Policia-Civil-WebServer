@@ -1,14 +1,13 @@
 let dados = []
 
-async function buscaArquivos() {
-    const url = `http://localhost:5000/index/documentos/json`;
+async function buscaUsuarios() {
+    const url = `http://localhost:5000/index/usuarios/json`;
     try {
         const resp = await fetch(url, { method: 'GET' });
         const dados = await resp.json();
-        return dados.documentos;
+        return dados.usuarios;
     } catch (erro) {
-        alert('Erro ao buscar os arquivos!')
-        console.log(erro)        
+        alert('Erro ao buscar os usuarios!')
     }
 }
 
@@ -26,28 +25,12 @@ const itensPorPagina = 10
 //filtros
 function adicionaFiltro() {
     let nome = document.querySelector('#nome').value;
-    let ano = document.querySelector('#ano').value;
-    let categoria = document.querySelector('#categoria').value
-
-    let anoAtual = new Date().getFullYear()
-
-    console.log(`Nome=${nome} | ano=${ano} | categoria=${categoria}`)
 
     if (nome.trim() !== '') {
         filtros_ativos.push({type: 'nome', value: nome})
     }
 
-    if ( ano.trim() !== '' && Number(ano) <= anoAtual) {
-        filtros_ativos.push({type: 'ano', value: ano})
-    }
-
-    if (categoria.trim() !== ''){
-        filtros_ativos.push({type: 'categoria', value: categoria})
-    }
-
     document.querySelector('#nome').value = ''
-    document.querySelector('#ano').value = ''
-    document.querySelector('#categoria').value = ''
 
     exibeFiltrosAtivos()
     atualizaTabela()
@@ -87,14 +70,6 @@ function filtraDados() {
         if(element.type === 'nome'){
             dadosFiltrados = dadosFiltrados.filter(item => {return item.Nome.toLocaleLowerCase().includes(element.value.toLocaleLowerCase())})
         }
-
-        if(element.type === 'ano'){
-            dadosFiltrados = dadosFiltrados.filter(item => {return item.Ano == element.value})
-        }
-
-        if(element.type === 'categoria'){
-            dadosFiltrados = dadosFiltrados.filter(item => {return item.Categoria.toLocaleLowerCase() === element.value.toLocaleLowerCase()})
-        }
     });
 
     return dadosFiltrados
@@ -133,19 +108,14 @@ function preencheTabela(dados){
         const linha = document.createElement('tr')
         linha.innerHTML = `
             <td>${element.Nome}</td>
-            <td>${element.Ano}</td>
-            <td>${element.Categoria}</td>
-            <td>${new Date(element.UpdatedAt).toLocaleString()}</td>
+            <td>${element.Admin}</td>
             <td>
-                <button value="${element.ID}" class="btnDownload" onClick="baixaArquivo(${element.ID})">
-                    <span class="material-symbols-outlined">download</span>
-                </button>
-                <a href="/index/documentos/${element.ID}">
+                <a href="/index/usuarios/${element.ID}">
                     <button>
                         <span class="material-symbols-outlined">edit</span>
                     </button>
                 </a>
-                <button value="${element.ID}" class="btnDelete" onClick="deletaArquivo(${element.ID})">
+                <button value="${element.ID}" class="btnDelete" onClick="deletaUsuario(${element.ID})">
                     <span class="material-symbols-outlined">delete</span>
                 </button>
             </td>
@@ -186,7 +156,7 @@ function avancaDados(){
 
 
 async function carregaDados(){
-    dados = await buscaArquivos()
+    dados = await buscaUsuarios()
     atualizaTabela()
 }
 

@@ -26,22 +26,6 @@ func ExibeTodosDocumentos(c *gin.Context){
 	})
 }
 
-//teste function
-func ListaDocumentos(c *gin.Context){
-	limit := c.DefaultQuery("limit", "10")
-	offset := c.DefaultQuery("offset", "0")
-
-	limitInt, _ := strconv.Atoi(limit)
-	offsetInt, _ := strconv.Atoi(offset)
-
-	var documentos []models.Documento
-	database.DB.Limit(limitInt).Offset(offsetInt).Find(&documentos)
-	c.JSON(http.StatusOK, gin.H{
-		"message": "Pagina "+fmt.Sprint((offsetInt/10)),
-		"documentos": documentos,
-	})
-}
-
 func ExibeFormDocumentos(c *gin.Context) {
 	c.HTML(http.StatusOK, "form-documento.html", nil)
 }
@@ -94,7 +78,7 @@ func BuscaArquivo(c *gin.Context) {
 		})
 	} else {
 		c.HTML(http.StatusOK, "form-documento.html", gin.H{
-			"Upload": true,
+			"Update": true,
 			"Documento": documento,
 		})
 	}
