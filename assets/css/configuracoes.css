@@ -1,0 +1,60 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap');
+
+:root{
+    --cor-principal: black;
+    --cor-secundaria: white;
+    --cor-fundo: rgba(255, 255, 255, 0.5);
+    --cor-borda: rgba(0, 0, 0, 0.15);
+    --sombra: 7px 10px 20px 1px rgba(0, 0, 0, 0.3);
+    --fonte: "JetBrains Mono", monospace;
+}
+
+body{
+    margin: 0;
+    padding: 0;
+    font-family: var(--fonte);
+}
+
+.bg-config{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 5%;
+}
+
+.bg-config form{
+    width: 40%;
+}
+
+.form-group{
+    padding: 1.5rem;
+    width: 100%;
+    display: flex;
+    justify-content: left;
+    margin-bottom: 1rem;
+    border-bottom: solid 1px var(--cor-borda);
+}
+
+.form-check-input{
+    margin-right: 10px;
+}
+
+#div-select{
+    flex-direction: column;
+}
+
+#div-select select{
+    width: 40%;
+    margin-top: 5px;
+}
+
+#div-botao{
+    justify-content: right;
+    border: none;
+}
+
+#div-botao button{
+    width: 5.5rem;
+    margin-right: 30px;
+}
