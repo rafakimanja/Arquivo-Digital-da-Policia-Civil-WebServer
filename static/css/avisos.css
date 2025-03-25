@@ -1,0 +1,87 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap');
+
+body{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.bg-avisos {
+    font-family: "JetBrains Mono", monospace;
+    margin-top: 5%;
+    width: 70rem;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    gap: 20px;
+    font-size: 18px;
+}
+
+.titulo {
+    text-align: center;
+    font-size: 29px;
+    font-weight: bold;
+}
+
+.conteudo {
+    text-align: left;
+    line-height: 1.6;
+    width: 90%;
+    padding: 0 3rem 0 3rem;
+}
+
+.email {
+    color: blue;
+    font-style: italic;
+    cursor: pointer;
+}
+
+.email:hover {
+    text-decoration: underline;
+}
+
+.botao-container {
+    width: 100%;
+    padding: 1rem;
+    display: flex;
+    justify-content: right;
+}
+
+.botao-container button {
+    width: 7rem;
+    height: 2.5rem;
+    font-size: 1.15rem;
+    margin-right: 40px;
+    border-radius: 5px;
+    border-style: none;
+    cursor: pointer;
+    background-color: #2783da;
+    color: white;
+}
+
+.botao-container button:hover {
+    background-color: #1c64a8;
+}
+
+ul{
+    padding: 10px 0px 10px 40px;
+}
+
+@media (max-width: 1200px) {
+    .bg-avisos{
+        width: 50rem;
+        font-size: 16px;
+    }
+
+    .titulo{
+        font-size: 26px;
+    }
+
+    .botao-container button{
+        width: 6rem;
+        height: 2.25rem;
+    }
+}

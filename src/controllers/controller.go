@@ -15,6 +15,14 @@ func ExibeTelaLogin(c *gin.Context) {
 	c.HTML(http.StatusOK, "login", nil)
 }
 
+func ExibeTelaCadastro(c *gin.Context){
+	c.HTML(http.StatusOK, "cadastro.html", nil)
+}
+
+func ExibeTelaRecSenha(c *gin.Context){
+	c.HTML(http.StatusOK, "rec-senha", nil)
+}
+
 func ExibeTelaIndex(c *gin.Context) {
 	c.HTML(http.StatusOK, "index.html", nil)
 }
@@ -24,10 +32,6 @@ func ExibeTelaNotFound(c *gin.Context) {
 		"code": http.StatusNotFound,
 		"message": "Nao encontramos esta pagina!",
 	})
-}
-
-func ExibeTabela(c *gin.Context){
-	c.HTML(200, "tabela.html", nil)
 }
 
 func LoginAcess(c *gin.Context) {

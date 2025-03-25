@@ -12,6 +12,8 @@ func HandleRequest() {
 	r.Static("/static", "./static")
 	r.LoadHTMLGlob("templates/**/*")
 	r.GET("/", controllers.ExibeTelaLogin)
+	r.GET("/cadastro", controllers.ExibeTelaCadastro)
+	r.GET("/recSenha", controllers.ExibeTelaRecSenha)
 	r.POST("/login", controllers.LoginAcess)
 	indexGroup := r.Group("/index", middlewares.SessionMiddleware)
 	{

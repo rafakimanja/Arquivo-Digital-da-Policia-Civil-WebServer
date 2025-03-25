@@ -11,16 +11,17 @@
         <h1>Tela de Login</h1>
         <label>RG</label><input type="text" name="RG" required>
         <label>Senha</label><input type="password" name="Senha" id="" required>
-        <a href="#">ESQUECEU A SENHA ?</a>
-        <button type="submit">ENTRAR</button>
-        <a href="#">CADASTRAR</a>
+        <a href="/recSenha">ESQUECEU A SENHA ?</a>
+        <button type="submit" onclick="validaLogin('{{.Status}}')">ENTRAR</button>
+        <a href="/cadastro">CADASTRAR</a>
     </form>
-    <br>
-    {{ if .Status}}
-        <p style="color: green;">{{.Message}}</p>
-    {{ else }}
-        <p style="color: brown;">{{.Message}}</p>
-    {{ end }}
+    <script>
+        function validaLogin(status){
+            if(!status){
+                alert('Usuario ou senha incorretos. Tente novamente!')
+            }
+        }
+    </script>
 </body>
 </html>
 {{end}}
