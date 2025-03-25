@@ -100,7 +100,7 @@ function validaForm(nome, ano, categoria, arquivo, updateArq){
 }
 
 function testeNome(nome, regex){
-    if(nome === "") return false
+    if(nome.trim() === "") return false
     return regex.test(nome)
 }
 

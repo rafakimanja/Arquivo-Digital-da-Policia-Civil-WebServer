@@ -7,21 +7,15 @@
     <title>Login</title>
 </head>
 <body>
-    <form action="/login" method="post">
+    <form action="/login" method="post" onsubmit="validaForm(event)">
         <h1>Tela de Login</h1>
-        <label>RG</label><input type="text" name="RG" required>
-        <label>Senha</label><input type="password" name="Senha" id="" required>
+        <label>Usuario</label><input type="text" name="RG" id="nickname" required>
+        <label>Senha</label><input type="password" name="Senha" id="password" required>
         <a href="/recSenha">ESQUECEU A SENHA ?</a>
         <button type="submit" onclick="validaLogin('{{.Status}}')">ENTRAR</button>
         <a href="/cadastro">CADASTRAR</a>
     </form>
-    <script>
-        function validaLogin(status){
-            if(!status){
-                alert('Usuario ou senha incorretos. Tente novamente!')
-            }
-        }
-    </script>
+    <script src="/static/js/login.js"></script>
 </body>
 </html>
 {{end}}

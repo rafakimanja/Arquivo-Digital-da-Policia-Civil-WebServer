@@ -86,19 +86,19 @@ function validaForm(nome, nickname, senha, senhaConfirm){
 
     if(!testeNickname(nickname, regexNickname)) return {resp: false, message: "Nome de usuario invalido!"}
 
-    if(senha === "" || senha.length < 4) return {resp: false, message: "Senha invalida!"}
+    if(senha.trim() === "" || senha.length < 4) return {resp: false, message: "Senha invalida!"}
 
-    if(senhaConfirm === "" || senhaConfirm !== senha) return {resp: false, message: "Senhas nao coincidem!"}
+    if(senhaConfirm.trim() === "" || senhaConfirm !== senha) return {resp: false, message: "Senhas nao coincidem!"}
 
     return {resp: true, message: ""}
 }
 
 function testeNome(nome, regex){
-    if(nome === "") return false
+    if(nome.trim() === "") return false
     return regex.test(nome)
 }
 
 function testeNickname(nickname, regex){
-    if(nickname === "") return false
+    if(nickname.trim() === "") return false
     return regex.test(nickname)
 }
