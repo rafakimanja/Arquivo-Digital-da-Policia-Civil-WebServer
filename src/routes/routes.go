@@ -35,6 +35,7 @@ func HandleRequest() {
 		indexGroup.POST("/usuarios", controllers.CriaNovoUsuario)
 		indexGroup.PATCH("usuarios/:id", controllers.AtualizaUsuario)
 		indexGroup.DELETE("/usuarios/:id", controllers.DeletaUsuario)
+		indexGroup.GET("/ajuda", controllers.ExibeTelaAjuda)
 		indexGroup.POST("/logout", controllers.LogoutSession)
 	}
 	r.NoRoute(controllers.ExibeTelaNotFound)

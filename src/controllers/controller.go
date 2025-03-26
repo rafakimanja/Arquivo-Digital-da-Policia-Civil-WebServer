@@ -37,6 +37,10 @@ func ExibeTelaNotFound(c *gin.Context) {
 	})
 }
 
+func ExibeTelaAjuda(c *gin.Context){
+	c.HTML(http.StatusOK, "ajuda.html", nil)
+}
+
 func LoginAcess(c *gin.Context) {
 
 	type LoginUser struct {
