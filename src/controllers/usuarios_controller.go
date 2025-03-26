@@ -3,7 +3,6 @@ package controllers
 import (
 	"adpc-webserver/src/database"
 	"adpc-webserver/src/models"
-	"fmt"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -12,7 +11,6 @@ import (
 func ExibeTodosUsuarios(c *gin.Context) {
 	var usuarios []models.Usuario
 	database.DB.Find(&usuarios)
-	fmt.Println(usuarios)
 	c.HTML(http.StatusOK, "usuarios.html", gin.H{
 		"usuarios": usuarios,
 	})

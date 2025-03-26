@@ -1,27 +1,35 @@
 {{ define "table-users" }}
-    <table>
-        <thead>
-        <tr>
-            <th>Nome</th>
-            <th>Admin</th>
-            <th></th>
-        </tr>
+<div id="tabela" class="tabela-usuarios">
+    <table class="table table-bordered">
+        <thead class="table-dark">
+            <tr>
+                <th class="col">Nome</th>
+                <th class="col">Administrador</th>
+                <th class="col"></th>
+            </tr>
         </thead>
-        <tbody>
-        {{ range . }}
-        <tr>
-            <td>{{.Nome}}</td>
-            <td>{{.Admin}}</td>
-            <td>
-                <button>
-                    <span class="material-symbols-outlined">edit</span>
-                </button>
-                <button>
-                    <span class="material-symbols-outlined">delete</span>
-                </button>
-            </td>
-        </tr>
-        {{ end }}
+        <tbody id="content">
+            <tr>
+                <td>Administrador</td>
+                <td>Sim</td>
+                <td>
+                    <button class="btn btn-warning">
+                        <i class="bi bi-pencil"></i>
+                    </button>
+                    <button class="btn btn-danger">
+                        <i class="bi bi-trash"></i>
+                    </button>
+                </td>
+            </tr>
         </tbody>
     </table>
+    <div class="bottom-table">
+        <button onclick="voltaDados()"><i class="bi bi-caret-left-fill"></i></button>
+        <div class="spans">
+            <span id="pagina-atual">1</span>
+            <span id="total-paginas">3</span>
+        </div>
+        <button onclick="avancaDados()"><i class="bi bi-caret-right-fill"></i></button>
+    </div>
+</div>
 {{end}}
