@@ -15,7 +15,10 @@ import (
 )
 
 func ExibeTelaDocumentos(c *gin.Context){
-	c.HTML(http.StatusOK, "documentos.html", nil)
+	usuario, _ := c.Get("Usuario")
+	c.HTML(http.StatusOK, "documentos.html", gin.H{
+		"Usuario": usuario,
+	})
 }
 
 func ExibeTodosDocumentos(c *gin.Context){
@@ -27,7 +30,10 @@ func ExibeTodosDocumentos(c *gin.Context){
 }
 
 func ExibeFormDocumentos(c *gin.Context) {
-	c.HTML(http.StatusOK, "form-documento.html", nil)
+	usuario, _ := c.Get("Usuario")
+	c.HTML(http.StatusOK, "form-documento.html", gin.H{
+		"Usuario": usuario,
+	})
 }
 
 func CriaNovoArquivo(c *gin.Context) {

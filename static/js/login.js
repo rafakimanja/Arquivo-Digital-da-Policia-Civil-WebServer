@@ -11,7 +11,7 @@ function validaForm(event){
     const senha = document.querySelector('#password').value
 
     const resp = validaCampos(nickname, senha)
-
+    console.log(resp)
     if(!resp.resp){
         alert(resp.message)
         return
@@ -27,6 +27,7 @@ function validaCampos(nickname, senha){
 
     if(senha.trim() === "" || senha.length < 4) return {resp: false, message: "Senha invalida!"}
 
+    return {resp: true, message: ""}
 }
 
 function testeNickname(nickname, regex){

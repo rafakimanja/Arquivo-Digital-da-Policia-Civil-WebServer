@@ -11,6 +11,7 @@ import (
 
 func SessionMiddleware(c *gin.Context){
 	var session models.Session
+	var user models.Usuario
 
 	sessionToken, err := c.Cookie("session_token")
 	if err != nil {
@@ -27,5 +28,17 @@ func SessionMiddleware(c *gin.Context){
 		c.Abort()
 		return
 	}
+
+	database.DB.First(&user, session.UserID)
+	
+	type userShort struct {
+		Nome string
+		Admin bool
+	}
+
+	contextUser := userShort{Nome: user.Nome, Admin: user.Admin}
+	
+	c.Set("Usuario", contextUser)
+
 	c.Next()
 }

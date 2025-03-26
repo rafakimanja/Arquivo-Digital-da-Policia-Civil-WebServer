@@ -6,8 +6,8 @@
     <script src="/static/js/usuarios.js" defer></script>
 </head>
 <body>
-  {{template "header"}}
-  {{template "sidebar"}}
+  {{ template "header" .Usuario }}
+  {{ template "sidebar" .Usuario }}
   <div>
     {{template "users-filter"}}
     {{template "table-users"}}

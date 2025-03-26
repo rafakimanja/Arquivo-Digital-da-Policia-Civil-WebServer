@@ -5,9 +5,9 @@
     <title>Configurações</title>
 </head>
 <body>
-  {{ template "header" }}
+  {{ template "header" .Usuario }}
   <h1>Configurações do Sistema</h1>
-  {{ template "sidebar" }}
+  {{ template "sidebar" .Usuario }}
   <div>
     {{ if .configuracoes }}
     <form method="post">

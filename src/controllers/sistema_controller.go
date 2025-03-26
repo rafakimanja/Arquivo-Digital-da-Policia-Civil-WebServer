@@ -16,8 +16,10 @@ func ExibeConfSistema(c *gin.Context) {
 			"configuracoes": nil,
 		})
 	} else {
+		usuario, _ := c.Get("Usuario")
 		c.HTML(http.StatusOK, "configuracoes.html", gin.H{
 			"configuracoes": configuracoes,
+			"Usuario": usuario,
 		})
 	}
 }

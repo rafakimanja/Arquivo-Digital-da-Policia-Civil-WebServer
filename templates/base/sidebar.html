@@ -1,11 +1,15 @@
 {{define "sidebar"}}
 <ul>
     <li><a href="/index">Home</a></li>
-    <li><a href="/index/documentos/form">Adicionar</a></li>
-    <li><a href="/index/documentos">Pesquisar</a></li>
-    <li><a href="/index/config">Configurações</a></li>
-    <li><a href="/index/usuarios">Usuários Cad.</a></li>
-    <li><a href="#">Ajuda</a></li>
+    {{ if .Admin }}
+        <li><a href="/index/documentos/form">Adicionar</a></li>
+        <li><a href="/index/documentos">Pesquisar</a></li>
+        <li><a href="/index/config">Configurações</a></li>
+        <li><a href="/index/usuarios">Usuários Cad.</a></li>
+        <li><a href="#">Ajuda</a></li>
+    {{ else }}
+        <li><a href="#">Ajuda</a></li>
+    {{ end }}
     <li>
         <form action="/index/logout" method="post">
             <button type="submit">Sair</button>

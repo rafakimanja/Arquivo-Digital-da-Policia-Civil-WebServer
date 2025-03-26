@@ -9,7 +9,10 @@ import (
 )
 
 func ExibeTelaUsuarios(c *gin.Context){
-	c.HTML(http.StatusOK, "usuarios.html", nil)
+	usuario, _ := c.Get("Usuario")
+	c.HTML(http.StatusOK, "usuarios.html", gin.H{
+		"Usuario": usuario,
+	})
 }
 
 func ExibeTodosUsuarios(c *gin.Context) {
@@ -21,7 +24,10 @@ func ExibeTodosUsuarios(c *gin.Context) {
 }
 
 func ExibeFormUsuario(c *gin.Context) {
-	c.HTML(http.StatusOK, "form-usuarios.html", nil)
+	usuario, _ := c.Get("Usuario")
+	c.HTML(http.StatusOK, "form-usuarios.html", gin.H{
+		"Usuario": usuario,
+	})
 }
 
 func CriaNovoUsuario(c *gin.Context) {

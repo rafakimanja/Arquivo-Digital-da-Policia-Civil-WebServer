@@ -6,8 +6,8 @@
     <title>Formulário Documento</title>
 </head>
 <body>
-    {{template "header"}}
-    {{template "sidebar" }}
+    {{ template "header" .Usuario }}
+    {{ template "sidebar" .Usuario }}
     <div>
         <h1>Adiconar Arquivo</h1>
         {{ if .Update }}

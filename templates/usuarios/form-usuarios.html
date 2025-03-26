@@ -5,8 +5,8 @@
     <title>Formulário Usuario</title>
 </head>
 <body>
-    {{ template "header" }}
-    {{ template "sidebar"}}
+    {{ template "header" .Usuario }}
+    {{ template "sidebar" .Usuario }}
     <div>
       {{ if .Update }}
         <h1>Atualiza Usuario</h1>

@@ -24,7 +24,10 @@ func ExibeTelaRecSenha(c *gin.Context){
 }
 
 func ExibeTelaIndex(c *gin.Context) {
-	c.HTML(http.StatusOK, "index.html", nil)
+	usuario, _ := c.Get("Usuario")
+	c.HTML(http.StatusOK, "index.html", gin.H{
+		"Usuario": usuario,
+	})
 }
 
 func ExibeTelaNotFound(c *gin.Context) {
