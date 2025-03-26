@@ -9,16 +9,28 @@
     {{ template "header" .Usuario }}
     <h1>Arquivo Digital da Policia Civil</h1>
     {{ template "sidebar" .Usuario }}
-    <div>
+    
+    {{ if .Usuario.Admin }}
         <div>
-            <p>Adicionar Arquivo</p>
-            <span class="material-symbols-outlined">add</span>
+            <h1>Em producao...</h1>
+            <span class="material-symbols-outlined">construction</span>
         </div>
+    {{ else }}
         <div>
-            <p>Buscar Arquivo</p>
-            <span class="material-symbols-outlined">search</span>
+            <a href="/index/documentos/form">
+                <div>
+                    <p>Adicionar Arquivo</p>
+                    <span class="material-symbols-outlined">add</span>
+                </div>
+            </a>
+            <a href="/index/documentos">
+                <div>
+                    <p>Buscar Arquivo</p>
+                    <span class="material-symbols-outlined">search</span>
+                </div>
+            </a>
         </div>
-    </div>
+    {{ end }}
 </body>
 </html>
 
