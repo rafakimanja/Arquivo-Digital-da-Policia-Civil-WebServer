@@ -1,4 +1,3 @@
-
 async function deletaArquivo(id) {
     let url = `http://localhost:5000/index/documentos/${id}`
     try{
