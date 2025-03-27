@@ -135,16 +135,16 @@ function preencheTabela(dados){
             <td>${element.Categoria}</td>
             <td>${new Date(element.UpdatedAt).toLocaleString()}</td>
             <td>
-                <button value="${element.ID}" class="btnDownload" onClick="baixaArquivo(${element.ID})">
-                    <span class="material-symbols-outlined">download</span>
+                <button value="${element.ID}" class="btn btn-success" onClick="baixaArquivo(${element.ID})">
+                    <i class="bi bi-download"></i>
                 </button>
                 <a href="/index/documentos/${element.ID}">
-                    <button>
-                        <span class="material-symbols-outlined">edit</span>
+                    <button class="btn btn-warning">
+                        <i class="bi bi-pencil"></i>
                     </button>
                 </a>
-                <button value="${element.ID}" class="btnDelete" onClick="deletaArquivo(${element.ID})">
-                    <span class="material-symbols-outlined">delete</span>
+                <button value="${element.ID}" class="btn btn-danger" onClick="deletaArquivo(${element.ID})">
+                    <i class="bi bi-trash"></i>
                 </button>
             </td>
         `

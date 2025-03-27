@@ -4,17 +4,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="/static/css/login.css">
     <title>Login</title>
 </head>
 <body>
-    <form action="/login" method="post" onsubmit="validaForm(event)">
-        <h1>Tela de Login</h1>
-        <label>Usuario</label><input type="text" name="RG" id="nickname" required>
-        <label>Senha</label><input type="password" name="Senha" id="password" required>
-        <a href="/recSenha">ESQUECEU A SENHA ?</a>
-        <button type="submit" onclick="validaLogin('{{.Status}}')">ENTRAR</button>
-        <a href="/cadastro">CADASTRAR</a>
-    </form>
+    <div class='bg-login'>
+        <div class='div-image'>
+            <img src="/static/img/Logo-PC.png" alt="logo-pc" />
+        </div>
+        <div class='div-form'>
+            <h2 class='titulo-form' >Login</h2>
+            <form method="post" action="/login" onsubmit="validaForm(event)">
+                <div class='input-group'>
+                    <input type="text" name="RG" id="nickname" required />
+                    <label for="input-usuario">USUARIO</label>
+                </div>
+                <div class='input-group'>
+                    <input type="password" name="Senha" id="password" required />
+                    <label for="input-senha" >SENHA</label>
+                    <i class="bi bi-eye" id="icon-olho" onclick="mostraSenha()"></i>
+                </div>
+                <a href="/recSenha">Esqueceu a Senha?</a>
+                <div class='button-group'>
+                    <button type="submit" onclick="validaLogin('{{.Status}}')">ENTRAR</button>
+                    <a href="/cadastro"><button id='cadastro'>CADASTRAR</button></a>
+                </div>
+            </form>
+        </div>
+    </div>
     <script src="/static/js/login.js"></script>
 </body>
 </html>

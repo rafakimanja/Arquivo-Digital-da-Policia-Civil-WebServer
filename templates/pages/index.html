@@ -3,34 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/css/index.css">
     <title>Index</title>
 </head>
 <body>
     {{ template "header" .Usuario }}
-    <h1>Arquivo Digital da Policia Civil</h1>
     {{ template "sidebar" .Usuario }}
-    
-    {{ if .Usuario.Admin }}
-        <div>
-            <h1>Em producao...</h1>
-            <span class="material-symbols-outlined">construction</span>
+    <div class="bg-index">
+        {{ if .Usuario.Admin }}
+        <div class="space">
+            <p>Em producao...</p>
+            <i class="bi bi-exclamation-triangle-fill"></i>
         </div>
-    {{ else }}
-        <div>
-            <a href="/index/documentos/form">
-                <div>
-                    <p>Adicionar Arquivo</p>
-                    <span class="material-symbols-outlined">add</span>
-                </div>
-            </a>
-            <a href="/index/documentos">
-                <div>
-                    <p>Buscar Arquivo</p>
-                    <span class="material-symbols-outlined">search</span>
-                </div>
-            </a>
-        </div>
-    {{ end }}
+        {{ else }}
+        <a href="/index/documentos/form">
+            <div class="space">
+                <p>Adicionar Arquivo</p>
+                <i class="bi bi-plus-circle"></i>
+            </div>
+        </a>
+        <a href="/index/documentos">
+            <div class="space">
+                <p>Buscar Arquivo</p>
+                <i class="bi bi-search"></i>
+            </div>
+        </a>
+    <div>
 </body>
 </html>
 

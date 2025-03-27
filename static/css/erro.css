@@ -1,0 +1,47 @@
+body{
+    margin: 0;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color: black;
+}
+
+.bg-erro{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10rem;
+}
+
+.code{
+    font-size: 12rem;
+    font-weight: bolder;
+    line-height: 10rem;
+    margin-top: 1rem;
+}
+
+.message{
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+.bg-erro button{
+    width: 11vh;
+    height: 4vh;
+    border: solid rgb(148, 148, 148) 1px;
+    border-radius: 7.5px;
+    cursor: pointer;
+    background-color: #fff;
+    margin-bottom: 10px;
+    transition: 0.3s;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+.bg-erro button:hover{
+    background-color: #0000001a;
+}
+
+.bg-erro button:active{
+    background-color: #0000003f;
+}

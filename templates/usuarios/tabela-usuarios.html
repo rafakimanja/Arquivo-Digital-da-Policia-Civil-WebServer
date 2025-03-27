@@ -1,22 +1,35 @@
 {{ define "table-users" }}
-<div class="tabela">
-    <table>
-        <thead>
+<div id="tabela" class="tabela-usuarios">
+    <table class="table table-bordered">
+        <thead class="table-dark">
             <tr>
-                <th>Nome</th>
-                <th>Admin</th>
-                <th></th>
+                <th class="col">Nome</th>
+                <th class="col">Administrador</th>
+                <th class="col"></th>
             </tr>
         </thead>
-        <tbody id="content"></tbody>
+        <tbody id="content">
+            <tr>
+                <td>Administrador</td>
+                <td>Sim</td>
+                <td>
+                    <button class="btn btn-warning">
+                        <i class="bi bi-pencil"></i>
+                    </button>
+                    <button class="btn btn-danger">
+                        <i class="bi bi-trash"></i>
+                    </button>
+                </td>
+            </tr>
+        </tbody>
     </table>
     <div class="bottom-table">
-        <button onclick="voltaDados()">Anterior</button>
+        <button onclick="voltaDados()"><i class="bi bi-caret-left-fill"></i></button>
         <div class="spans">
             <span id="pagina-atual"></span>
             <span id="total-paginas"></span>
         </div>
-        <button onclick="avancaDados()">Proximo</button>
+        <button onclick="avancaDados()"><i class="bi bi-caret-right-fill"></i></button>
     </div>
 </div>
 {{end}}

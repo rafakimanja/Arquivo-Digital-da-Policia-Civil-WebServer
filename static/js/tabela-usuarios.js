@@ -111,12 +111,12 @@ function preencheTabela(dados){
             <td>${element.Admin}</td>
             <td>
                 <a href="/index/usuarios/${element.ID}">
-                    <button>
-                        <span class="material-symbols-outlined">edit</span>
+                    <button class="btn btn-warning">
+                        <i class="bi bi-pencil"></i>
                     </button>
                 </a>
-                <button value="${element.ID}" class="btnDelete" onClick="deletaUsuario(${element.ID})">
-                    <span class="material-symbols-outlined">delete</span>
+                <button value="${element.ID}" class="btn btn-danger" onClick="deletaUsuario(${element.ID})">
+                    <i class="bi bi-trash"></i>
                 </button>
             </td>
         `

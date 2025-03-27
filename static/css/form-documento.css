@@ -1,0 +1,63 @@
+:root{
+    --cor-principal: black;
+    --cor-secundaria: white;
+    --cor-fundo: rgba(255, 255, 255, 0.5);
+    --cor-borda: rgba(0, 0, 0, 0.15);
+    --sombra: 7px 10px 20px 1px rgba(0, 0, 0, 0.3);
+    --fonte: "JetBrains Mono", monospace;
+}
+
+body{
+    margin: 0;
+    padding: 0;
+    font-family: var(--fonte);
+}
+
+.bg-formDoc{
+    width: 100%;
+    height: 40rem;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 3rem;
+    margin-top: 5%;
+}
+
+.box-form{
+    width: 45%;
+    height: 100%;
+    border-radius: 20px;
+    box-shadow: var(--sombra);
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.box-form form{
+    width: 80%;
+}
+
+.titulo{
+    margin: 3rem 0 3rem 0;
+}
+
+.form-group{
+    padding: 1rem;
+}
+
+.form-group label{
+    margin-left: 10px;
+}
+
+#input-ano{
+    width: 50%;
+}
+
+#input-file{
+    width: 70%;
+}
+
+#div-botoes{
+    text-align: right;
+    font-weight: bolder;
+}

@@ -1,24 +1,24 @@
 {{ define "tabela-doc"}}
-<div id="tabela">
-    <table>
-        <thead>
+<div id="tabela" class="tabela-documentos">
+    <table class="table table-bordered">
+        <thead class="table-dark">
             <tr>
-                <th>Nome</th>
-                <th>Ano</th>
-                <th>Categoria</th>
-                <th>Ultima Modificacao</th>
-                <th></th>
+                <th class="col">Nome</th>
+                <th class="col">Ano</th>
+                <th class="col">Categoria</th>
+                <th class="col">Última Alteração</th>
+                <th class="col"></th>
             </tr>
         </thead>
         <tbody id="content"></tbody>
     </table>
     <div class="bottom-table">
-        <button onclick="voltaDados()">Anterior</button>
+        <button onclick="voltaDados()"><i class="bi bi-caret-left-fill"></i></button>
         <div class="spans">
             <span id="pagina-atual"></span>
             <span id="total-paginas"></span>
         </div>
-        <button onclick="avancaDados()">Proximo</button>
+        <button onclick="avancaDados()"><i class="bi bi-caret-right-fill"></i></button>
     </div>
 </div>
 {{ end }}

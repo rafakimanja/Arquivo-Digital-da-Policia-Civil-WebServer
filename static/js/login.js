@@ -1,3 +1,18 @@
+function mostraSenha() {
+    const inputSenha = document.querySelector('#nickname')
+    const iconOlho = document.querySelector('#password');
+
+    if (inputSenha.type === "password") {
+        inputSenha.type = "text";
+        iconOlho.classList.remove("bi-eye");
+        iconOlho.classList.add("bi-eye-slash");
+    } else {
+        inputSenha.type = "password";
+        iconOlho.classList.remove("bi-eye-slash");
+        iconOlho.classList.add("bi-eye");
+    }
+}
+
 function validaLogin(status){
     if(!status){
         alert('Usuario ou senha incorretos. Tente novamente!')
