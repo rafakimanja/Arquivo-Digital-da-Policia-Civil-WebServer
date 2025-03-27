@@ -7,8 +7,8 @@
     <title>Configurações</title>
 </head>
 <body>
-  {{ template "header" }}
-  {{ template "sidebar" }}
+  {{ template "header" .Usuario }}
+  {{ template "sidebar" .Usuario }}
 
   <div class="bg-config">
     <h1>Configurações do Sistema</h1>

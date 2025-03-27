@@ -8,9 +8,8 @@
     <title>Documentos</title>
 </head>
 <body>
-    {{template "header"}}
-    {{template "sidebar" }}
-    
+    {{ template "header" .Usuario }}
+    {{ template "sidebar" .Usuario }}
     <div class="bg-documentos">
         {{template "filtro-doc"}}
         {{template "tabela-doc"}}

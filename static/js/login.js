@@ -1,6 +1,6 @@
 function mostraSenha() {
-    const inputSenha = document.querySelector('#nickname')
-    const iconOlho = document.querySelector('#password');
+    const inputSenha = document.querySelector('#password')
+    const iconOlho = document.querySelector('#icon-olho');
 
     if (inputSenha.type === "password") {
         inputSenha.type = "text";
