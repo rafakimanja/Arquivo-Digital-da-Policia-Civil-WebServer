@@ -22,7 +22,7 @@
                     <input type="text" id="nome" name="nome" class="form-control" value="{{.Documento.Nome}}" placeholder="Informe o nome do arquivo"/>
                 </div>
                 <div class="form-group" id="input-ano">
-                    <label >Ano:</label>
+                    <label for="ano">Ano:</label>
                     <input type="text" id="ano" name="ano" value="{{.Documento.Ano}}" class="form-control" placeholder='Informe o ano' />
                 </div>
                 <div class="form-group">
@@ -74,7 +74,7 @@
                 </div>
                 <div class="form-group" id="div-botoes">
                     <button type="submit" class="btn btn-success">Salvar</button>
-                    <a href="/index"><button class="btn btn-danger">Cancelar</button></a>
+                    <a href="/index"><button type="button" class="btn btn-danger">Cancelar</button></a>
                 </div>
             </form>
         {{end}}

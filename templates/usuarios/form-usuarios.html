@@ -2,74 +2,79 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="/static/css/form-usuario.css">
     <title>Formulário Usuario</title>
 </head>
 <body>
     {{ template "header" .Usuario }}
     {{ template "sidebar" .Usuario }}
-    <div>
-      {{ if .Update }}
-        <h1>Atualiza Usuario</h1>
+    <div class="bg-formUser">
+      <div class="box-form">
+        {{ if .Update }}
+          <div class="titulo">
+            <h1>Atualiza Usuario</h1>
+          </div>
           <form id="{{.Usuario.ID}}" class="form-update" onsubmit="updateForm(event)">
-            <div>
-              <div>
-                <label>Nome do Usuario:</label>
-                <input type="text" id="nome" value="{{.Usuario.Nome}}" placeholder='Nome do usuario'/>
+              <div class="form-group">
+                <label for="nome">Nome:</label>
+                <input type="text" id="nome" class="form-control" value="{{.Usuario.Nome}}" placeholder='Digite seu nome'/>
               </div>
-              <div>
-                <label>Nome de Usuario:</label>
-                <input type="text" id="nickname" value="{{.Usuario.RG}}" placeholder='Nome de usuario'/>
+              <div class="form-group">
+                <label for="nickname">Nome de Usuario:</label>
+                <input type="text" id="nickname" class="form-control" value="{{.Usuario.RG}}" placeholder='Inisira um nome para o sistema'/>
               </div>
-              <div>
-                <label>Senha:</label>
-                <input type="password" id="senha" value="{{.Usuario.Senha}}" placeholder='Digite a senha'/>
+              <div class="form-group">
+                <label for="senha">Senha:</label>
+                <input type="password" id="senha" class="form-control" value="{{.Usuario.Senha}}" placeholder='Digite a senha'/>
               </div>
-              <div>
-                <label>Digite novamente a senha:</label>
-                <input type="password" id="senha-confirm" value="{{.Usuario.Senha}}" placeholder='Digite a senha novamente'/>
+              <div class="form-group">
+                <label for="senha-confirm">Digite novamente a senha:</label>
+                <input type="password" id="senha-confirm" class="form-control" value="{{.Usuario.Senha}}" placeholder='Digite a senha novamente'/>
               </div>
-              <div>
-                <label>Admin:</label>
-                <input type="checkbox" id="admin" {{if .Usuario.Admin}} checked {{ end }} />
+              <div class="form-group">
+                <label for="admin" class="form-check-label">Admin:</label>
+                <input type="checkbox" id="admin" class="form-check-input" {{if .Usuario.Admin}} checked {{ end }} />
               </div>
-            </div>
-            <div>
-              <button type='submit'>Salvar</button>
-              <a href="/index/usuarios"><button>Cancelar</button></a>
-            </div>
+              <div class="form-group" id="div-botoes">
+                <button type='submit' class="btn btn-success">Salvar</button>
+                <a href="/index/usuarios"><button type="button" class="btn btn-danger">Cancelar</button></a>
+              </div>
           </form>
       {{ else }}
-        <h1>Novo Usuario</h1>
+          <div class="titulo">
+            <h1>Novo Usuario</h1>
+          </div>
           <form class="form-update" onsubmit="postForm(event)">
-            <div>
-              <div>
-                <label>Nome do Usuario:</label>
-                <input type="text" id="nome" placeholder='Nome do usuario'/>
+              <div class="form-group">
+                <label for="nome">Nome:</label>
+                <input type="text" id="nome" class="form-control" placeholder='Digite seu nome'/>
               </div>
-              <div>
-                <label>Nome de Usuario:</label>
-                <input type="text" id="nickname" placeholder='Nome de usuario'/>
+              <div class="form-group">
+                <label for="nickname">Nome de Usuario:</label>
+                <input type="text" id="nickname" class="form-control" placeholder='Inisira um nome para o sistema'/>
               </div>
-              <div>
-                <label>Senha:</label>
-                <input type="password" id="senha" placeholder='Digite a senha'/>
+              <div class="form-group">
+                <label for="senha">Senha:</label>
+                <input type="password" id="senha" class="form-control" placeholder='Digite a senha'/>
               </div>
-              <div>
-                <label>Digite novamente a senha:</label>
-                <input type="password" id="senha-confirm" placeholder='Digite a senha novamente'/>
+              <div class="form-group">
+                <label for="senha-confirm">Digite novamente a senha:</label>
+                <input type="password" id="senha-confirm" class="form-control" placeholder='Digite a senha novamente'/>
               </div>
-              <div>
-                <label>Admin:</label>
-                <input type="checkbox"/>
+              <div class="form-group">
+                <label for="admin" class="form-check-label">Admin:</label>
+                <input type="checkbox" id="admin" class="form-check-input"/>
               </div>
-            </div>
-            <div>
-              <button type='submit'>Salvar</button>
-              <a href="/index/usuarios"><button>Cancelar</button></a>
-            </div>
+              <div class="form-group" id="div-botoes">
+                <button type='submit' class="btn btn-success">Salvar</button>
+                <a href="/index/usuarios"><button type="button" class="btn btn-danger">Cancelar</button></a>
+              </div>
           </form>
       {{ end }}
+      </div>
     </div>
 <script src="/static/js/form-usuario.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 </html>
