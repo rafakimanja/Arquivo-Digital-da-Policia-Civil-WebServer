@@ -38,7 +38,10 @@ func ExibeTelaNotFound(c *gin.Context) {
 }
 
 func ExibeTelaAjuda(c *gin.Context){
-	c.HTML(http.StatusOK, "ajuda.html", nil)
+	usuario, _ := c.Get("Usuario")
+	c.HTML(http.StatusOK, "ajuda.html", gin.H{
+		"Usuario": usuario,
+	})
 }
 
 func LoginAcess(c *gin.Context) {

@@ -4,7 +4,6 @@
     --cor-principal: black;
     --cor-secundaria: white;
     --cor-fundo: rgba(255, 255, 255, 0.5);
-    --cor-borda: rgba(0, 0, 0, 0.15);
     --sombra: 7px 10px 20px 1px rgba(0, 0, 0, 0.3);
     --fonte: "JetBrains Mono", monospace;
 }
@@ -15,46 +14,34 @@ body{
     font-family: var(--fonte);
 }
 
-.bg-formUser{
+.bg-ajuda{
     width: 100%;
-    height: 45rem;
     display: flex;
     align-items: center;
     flex-direction: column;
-    margin-top: 5%;
+    margin-top: 3%;
+    margin-bottom: 3%;
+    gap: 5rem;
+    font-size: 18px;
 }
 
-.box-form{
+.conteudo{
     width: 50%;
-    height: 100%;
+    padding: 2rem;
     border-radius: 20px;
     box-shadow: var(--sombra);
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-}
-
-.box-form form{
-    width: 80%;
 }
 
 .titulo{
-    margin: 3rem 0 3rem 0;
+    text-align: center;
 }
 
-.form-group{
-    padding: 1rem;
+.email {
+    color: blue;
+    font-style: italic;
+    cursor: pointer;
 }
 
-.form-group label{
-    margin-left: 10px;
-}
-
-.form-group input[type="password"]{
-    width: 60%;
-}
-
-#div-botoes{
-    text-align: right;
-    font-weight: bolder;
+.email:hover {
+    text-decoration: underline;
 }

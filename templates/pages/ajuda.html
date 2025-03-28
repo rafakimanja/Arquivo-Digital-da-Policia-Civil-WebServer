@@ -3,22 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/css/ajuda.css">
     <title>Ajuda</title>
 </head>
 <body>
-    <div>
-        <div>
-            <h1>Sobre o Sistema</h1>
-            <p>
+    {{ template "header" .Usuario }}
+    {{ template "sidebar" .Usuario }}
+    <div class="bg-ajuda">
+        <div class="conteudo">
+            <h1 class="titulo">Sobre o Sistema</h1>
+            <p class="texto">
                 O ADPC (Arquivo Digital da Polícia Civil) é um sistema desenvolvido com o intuito de ser um servidor de arquivos digital.  
                 No momento, ele é um sistema que está em fase de teste, portanto, é normal que apresente erros e inconsistências.
             </p>
         </div>
-        <div>
-            <h1>Deu erro, e agora ?</h1>
-            <p>
+        <div class="conteudo">
+            <h1 class="titulo">Deu erro, e agora ?</h1>
+            <p class="texto">
                 É importante para o desenvolvimento do sistema que, ao ser encontrado algum erro ou inconsistência, ele seja relatado.  
-                Para esses casos, pedimos que seja enviado um e-mail para <span>tidposorio@gmail.com</span> com a seguinte estrutura:
+                Para esses casos, pedimos que seja enviado um e-mail para <span class="email" onclick="copiarEmail()">tidposorio@gmail.com</span> com a seguinte estrutura:
                 <ul>
                     <li><strong>'ERRO - (o fato ocorrido)'</strong> Ex: 'ERRO - não estou conseguindo salvar um arquivo'.</li>
                     <li>Relatar o erro ocorrido com o máximo de detalhes possível, incluindo como ele aconteceu.</li>
@@ -26,10 +29,11 @@
                 </ul>
             </p>
         </div>
-        <div>
-            <h1>Suporte e Contato</h1>
-            <p>Qualquer dúvida, entre em contato via e-mail <span>tidposorio@gmail.com</span></p>
+        <div class="conteudo">
+            <h1 class="titulo">Suporte e Contato</h1>
+            <p class="texto">Qualquer dúvida, entre em contato via e-mail <span class="email" onclick="copiarEmail()">tidposorio@gmail.com</span></p>
         </div>
     </div>
+    <script src="/static/js/avisos.js"></script>
 </body>
 </html>

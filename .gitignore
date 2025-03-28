@@ -8,7 +8,7 @@
 *.so
 *.dylib
 *.env
-
+*.air.toml
 # Test binary, built with `go test -c`
 *.test
 
