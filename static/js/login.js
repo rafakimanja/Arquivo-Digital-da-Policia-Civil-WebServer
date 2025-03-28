@@ -13,12 +13,6 @@ function mostraSenha() {
     }
 }
 
-function validaLogin(status){
-    if(!status){
-        alert('Usuario ou senha incorretos. Tente novamente!')
-    }
-}
-
 function validaForm(event){
     event.preventDefault()
 
@@ -26,10 +20,10 @@ function validaForm(event){
     const senha = document.querySelector('#password').value
 
     const resp = validaCampos(nickname, senha)
-    console.log(resp)
+
     if(!resp.resp){
-        alert(resp.message)
-        return
+        event.preventDefault()
+        document.querySelector('#mensagem-erro').textContent = resp.message
     } else {
         event.target.submit()
     }

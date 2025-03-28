@@ -15,7 +15,7 @@
         </div>
         <div class='div-form'>
             <h2 class='titulo-form' >Login</h2>
-            <form method="post" action="/login" onsubmit="validaForm(event)">
+            <form method="post" action="/login" onsubmit="return validaForm(event)">
                 <div class='input-group'>
                     <input type="text" name="RG" id="nickname" required />
                     <label for="nickname">USUARIO</label>
@@ -26,9 +26,14 @@
                     <i class="bi bi-eye" id="icon-olho" onclick="mostraSenha()"></i>
                 </div>
                 <a href="/recSenha">Esqueceu a Senha?</a>
+
+                {{if not .Status}}
+                    <div id="mensagem-erro" style="color: red">{{.Message}}</div>
+                {{end}}
+                
                 <div class='button-group'>
-                    <button type="submit" onclick="validaLogin('{{.Status}}')">ENTRAR</button>
-                    <a href="/cadastro"><button id='cadastro'>CADASTRAR</button></a>
+                    <button type="submit">ENTRAR</button>
+                    <a href="/cadastro"><button type="button" id='cadastro'>CADASTRAR</button></a>
                 </div>
             </form>
         </div>
