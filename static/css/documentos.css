@@ -55,8 +55,9 @@ body{
     justify-content: center;
     padding: 0.5rem;
     gap: 10px;
-    border: solid 0.15rem var(--cor-borda);
-    border-radius: 15%;
+    background-color: #0d6efd;
+    color: var(--cor-secundaria);
+    border-radius: 5px;
 }
 
 .campo-filtro button{
@@ -64,13 +65,12 @@ body{
     height: 25px;
     border-radius: 50%;
     border-style: none;
-    background-color: darkgray;
-    color: white;
+    background-color: var(--cor-secundaria);
+    color: var(--cor-principal);
     cursor: pointer;
 }
 
 .campo-filtro p {
-    background-color: bisque;
     margin: 0;
 }
 
