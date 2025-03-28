@@ -93,6 +93,10 @@ body{
     color: white;
 }
 
+a:link{
+    text-decoration: none;
+}
+
 .bottom-table{
     display: flex;
     align-items: center;

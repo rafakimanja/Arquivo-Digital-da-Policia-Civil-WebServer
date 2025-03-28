@@ -8,6 +8,9 @@ import (
 )
 
 func HandleRequest() {
+	// Definir o modo como "release"
+	//gin.SetMode(gin.ReleaseMode)
+
 	r := gin.Default()
 	r.Static("/static", "./static")
 	r.LoadHTMLGlob("templates/**/*")

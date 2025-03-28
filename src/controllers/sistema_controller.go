@@ -10,13 +10,15 @@ import (
 
 func ExibeConfSistema(c *gin.Context) {
 	var configuracoes models.Sistema
+	usuario, _ := c.Get("Usuario")
+
 	resp := database.DB.Last(&configuracoes)
 	if resp.RowsAffected == 0 {
 		c.HTML(http.StatusOK, "configuracoes.html", gin.H{
 			"configuracoes": nil,
+			"Usuario": usuario,
 		})
 	} else {
-		usuario, _ := c.Get("Usuario")
 		c.HTML(http.StatusOK, "configuracoes.html", gin.H{
 			"configuracoes": configuracoes,
 			"Usuario": usuario,

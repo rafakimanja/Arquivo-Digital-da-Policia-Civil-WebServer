@@ -5,7 +5,6 @@ async function buscaArquivos() {
     try {
         const resp = await fetch(url, { method: 'GET' });
         const dados = await resp.json();
-        console.log(dados)
         return dados.documentos;
     } catch (erro) {
         alert('Erro ao buscar os arquivos!')
@@ -185,7 +184,6 @@ function avancaDados(){
 
 async function carregaDados(){
     dados = await buscaArquivos()
-    console.log(dados)
     atualizaTabela()
 }
 

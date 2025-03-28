@@ -108,7 +108,7 @@ function preencheTabela(dados){
         const linha = document.createElement('tr')
         linha.innerHTML = `
             <td>${element.Nome}</td>
-            <td>${element.Admin}</td>
+            <td>${element.Admin ? 'Sim' : 'Não'}</td>
             <td>
                 <a href="/index/usuarios/${element.ID}">
                     <button class="btn btn-warning">
