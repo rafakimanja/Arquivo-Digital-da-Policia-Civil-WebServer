@@ -26,7 +26,7 @@ async function updateForm(event) {
     formData.append("arquivo", arquivo)
 
     try{
-        const url = `http://localhost:5000/index/documentos/${id}`
+        const url = `http://${env.IP_SERVIDOR}:${env.PORTA_SERVIDOR}/index/documentos/${id}`
         const response = await fetch(url, {
             method: 'PUT',
             body: formData
@@ -65,7 +65,7 @@ async function postForm(event) {
     formData.append("arquivo", arquivo)
 
     try{
-        const url = `http://localhost:5000/index/documentos`
+        const url = `http://${env.IP_SERVIDOR}:${env.PORTA_SERVIDOR}/index/documentos`
         const response = await fetch(url, {
             method: 'POST',
             body: formData

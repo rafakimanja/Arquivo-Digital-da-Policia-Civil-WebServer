@@ -1,7 +1,7 @@
 let dados = []
 
 async function buscaArquivos() {
-    const url = `http://localhost:5000/index/documentos/json`;
+    const url = `http://${env.IP_SERVIDOR}:${env.PORTA_SERVIDOR}/index/documentos/json`;
     try {
         const resp = await fetch(url, { method: 'GET' });
         const dados = await resp.json();

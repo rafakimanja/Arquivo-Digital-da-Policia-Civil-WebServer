@@ -1,5 +1,5 @@
 async function deletaArquivo(id) {
-    let url = `http://localhost:5000/index/documentos/${id}`
+    let url = `http://${env.IP_SERVIDOR}:${env.PORTA_SERVIDOR}/index/documentos/${id}`
     try{
         const resp = await fetch(url, {
             method: 'DELETE'
@@ -15,7 +15,7 @@ async function deletaArquivo(id) {
 }
 
 async function baixaArquivo(id) {
-    let url = `http://localhost:5000/index/documentos/download/${id}`
+    let url = `http://${env.IP_SERVIDOR}:${env.PORTA_SERVIDOR}/index/documentos/download/${id}`
 
     try {
         const response = await fetch(url);

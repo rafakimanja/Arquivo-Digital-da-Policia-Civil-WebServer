@@ -3,11 +3,15 @@ package routes
 import (
 	"adpc-webserver/src/controllers"
 	"adpc-webserver/src/middlewares"
-
+	"github.com/joho/godotenv"
 	"github.com/gin-gonic/gin"
+
+	"fmt"
 )
 
 func HandleRequest() {
+	_ = godotenv.Load("/.env")
+
 	// Definir o modo como "release"
 	//gin.SetMode(gin.ReleaseMode)
 
@@ -42,5 +46,5 @@ func HandleRequest() {
 		indexGroup.POST("/logout", controllers.LogoutSession)
 	}
 	r.NoRoute(controllers.ExibeTelaNotFound)
-	r.Run(":5000")
+	r.Run(fmt.Sprintf(":%s", os.Getenv("PORT_SERVER")))
 }

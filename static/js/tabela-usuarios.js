@@ -1,7 +1,7 @@
 let dados = []
 
 async function buscaUsuarios() {
-    const url = `http://localhost:5000/index/usuarios/json`;
+    const url = `http://${env.IP_SERVIDOR}:${env.PORTA_SERVIDOR}/index/usuarios/json`;
     try {
         const resp = await fetch(url, { method: 'GET' });
         const dados = await resp.json();

@@ -5,7 +5,7 @@ import (
 	"adpc-webserver/src/models"
 	"net/http"
 	"time"
-
+	"github.com/joho/godotenv"
 	"github.com/gin-gonic/gin"
 )
 
@@ -23,7 +23,9 @@ func SessionMiddleware(c *gin.Context){
 	database.DB.Where("token = ?", sessionToken).First(&session)
 	if session.ID == 0 || session.Expired.Before(time.Now()){
 		database.DB.Delete(&session, session.ID)
-		c.SetCookie("session_token", "", -1, "/", "localhost", false, true)
+		_ = godotenv.Load("/.env")
+		ip_server := os.Getenv("IP_SERVER'")
+		c.SetCookie("session_token", "", -1, "/", ip_server, false, true)
 		c.Redirect(http.StatusSeeOther, "/")
 		c.Abort()
 		return

@@ -7,7 +7,7 @@ import (
 	"fmt"
 	"net/http"
 	"time"
-
+	"github.com/joho/godotenv"
 	"github.com/gin-gonic/gin"
 )
 
@@ -88,7 +88,10 @@ func LoginAcess(c *gin.Context) {
 		return
 	}
 
-	c.SetCookie("session_token", session.Token, 3600, "/", "localhost", false, true)
+	_ = godotenv.Load("/.env")
+	ip_server := os.Getenv("IP_SERVER'")
+
+	c.SetCookie("session_token", session.Token, 3600, "/", ip_server, false, true)
 	c.Redirect(http.StatusFound, "/index")
 }
 
@@ -96,8 +99,12 @@ func LogoutSession(c *gin.Context) {
 	var session models.Session
 
 	sessionToken, err := c.Cookie("session_token")
+
+	_ = godotenv.Load("/.env")
+	ip_server := os.Getenv("IP_SERVER'")
+
 	if err != nil {
-		c.SetCookie("session_token", "", -1, "/", "localhost", false, true)
+		c.SetCookie("session_token", "", -1, "/", ip_server, false, true)
 		c.HTML(http.StatusInternalServerError, "erro.html", gin.H{
 			"code":    http.StatusInternalServerError,
 			"message": "Erro ao resgatar o cookie de sessao",
@@ -110,14 +117,14 @@ func LogoutSession(c *gin.Context) {
 	id := session.ID
 
 	if id == 0 {
-		c.SetCookie("session_token", "", -1, "/", "localhost", false, true)
+		c.SetCookie("session_token", "", -1, "/", ip_server, false, true)
 		c.Redirect(http.StatusSeeOther, "/")
 		return
 	}
 
 	result := database.DB.Delete(&session, id)
 	if result.Error != nil {
-		c.SetCookie("session_token", "", -1, "/", "localhost", false, true)
+		c.SetCookie("session_token", "", -1, "/", ip_server, false, true)
 		c.HTML(http.StatusInternalServerError, "erro.html", gin.H{
 			"code":    http.StatusInternalServerError,
 			"message": "Erro ao excluir o cookie de sessao",
@@ -125,6 +132,6 @@ func LogoutSession(c *gin.Context) {
 		return
 	}
 
-	c.SetCookie("session_token", "", -1, "/", "localhost", false, true)
+	c.SetCookie("session_token", "", -1, "/", ip_server, false, true)
 	c.Redirect(http.StatusSeeOther, "/")
 }

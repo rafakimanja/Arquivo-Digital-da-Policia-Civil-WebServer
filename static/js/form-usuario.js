@@ -20,7 +20,7 @@ async function updateForm(event) {
     const updateUser = {nome, rg: nickname, senha, admin: admin.checked}
 
     try{
-        const url = `http://localhost:5000/index/usuarios/${id}`
+        const url = `http://${env.IP_SERVIDOR}:${env.PORTA_SERVIDOR}/index/usuarios/${id}`
         const response = await fetch(url, {
             method: 'PATCH',
             headers: {
@@ -58,7 +58,7 @@ async function postForm(event) {
     const postUser = {nome, rg: nickname, senha, admin: false}
 
     try{
-        const url = `http://localhost:5000/index/usuarios`
+        const url = `http://${env.IP_SERVIDOR}:${env.PORTA_SERVIDOR}/index/usuarios`
         const response = await fetch(url, {
             method: 'POST',
             headers: {

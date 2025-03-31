@@ -1,5 +1,5 @@
 async function deletaUsuario(id) {
-    let url = `http://localhost:5000/index/usuarios/${id}`
+    let url = `http://${env.IP_SERVIDOR}:${env.PORTA_SERVIDOR}/index/usuarios/${id}`
     try{
         const resp = await fetch(url, {
             method: 'DELETE'
