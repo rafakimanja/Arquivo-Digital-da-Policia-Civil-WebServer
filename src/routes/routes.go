@@ -3,10 +3,9 @@ package routes
 import (
 	"adpc-webserver/src/controllers"
 	"adpc-webserver/src/middlewares"
-	"github.com/joho/godotenv"
-	"github.com/gin-gonic/gin"
 
-	"fmt"
+	"github.com/gin-gonic/gin"
+	"github.com/joho/godotenv"
 )
 
 func HandleRequest() {
@@ -46,5 +45,5 @@ func HandleRequest() {
 		indexGroup.POST("/logout", controllers.LogoutSession)
 	}
 	r.NoRoute(controllers.ExibeTelaNotFound)
-	r.Run(fmt.Sprintf(":%s", os.Getenv("PORT_SERVER")))
+	r.Run(":5000")
 }

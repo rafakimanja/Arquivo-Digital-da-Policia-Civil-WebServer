@@ -4,12 +4,14 @@ import (
 	"adpc-webserver/src/database"
 	"adpc-webserver/src/models"
 	"net/http"
+	"os"
 	"time"
-	"github.com/joho/godotenv"
+
 	"github.com/gin-gonic/gin"
+	"github.com/joho/godotenv"
 )
 
-func SessionMiddleware(c *gin.Context){
+func SessionMiddleware(c *gin.Context) {
 	var session models.Session
 	var user models.Usuario
 
@@ -21,7 +23,7 @@ func SessionMiddleware(c *gin.Context){
 	}
 
 	database.DB.Where("token = ?", sessionToken).First(&session)
-	if session.ID == 0 || session.Expired.Before(time.Now()){
+	if session.ID == 0 || session.Expired.Before(time.Now()) {
 		database.DB.Delete(&session, session.ID)
 		_ = godotenv.Load("/.env")
 		ip_server := os.Getenv("IP_SERVER'")
@@ -32,14 +34,14 @@ func SessionMiddleware(c *gin.Context){
 	}
 
 	database.DB.First(&user, session.UserID)
-	
+
 	type userShort struct {
-		Nome string
+		Nome  string
 		Admin bool
 	}
 
 	contextUser := userShort{Nome: user.Nome, Admin: user.Admin}
-	
+
 	c.Set("Usuario", contextUser)
 
 	c.Next()
