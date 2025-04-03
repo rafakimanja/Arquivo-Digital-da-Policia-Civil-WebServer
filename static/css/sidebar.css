@@ -3,7 +3,7 @@
 .sidebar{
     background-color: var(--cor-principal);
     font-family: "JetBrains Mono", monospace;;
-    height: 92.7vh;
+    height: calc(100% - 6.5rem);
     width: 16rem;
     position: fixed;
     top: 6.5rem;
@@ -15,7 +15,7 @@
 .sidebar ul{
     list-style: none;
     padding: 0.5em 0;
-    margin: 0;
+    margin: 2rem 0 0 0;
     display: flex;
     flex-direction: column;
     height: 100%;
@@ -59,13 +59,11 @@
 }
 
 .exit{
-    margin-top: 175%;
+    position: absolute;
+    bottom: 30px;
+    width: 76%;
 }
 
-.exit form{
-    width: 100%;
-    height: 100%;
-}
 
 .exit button {
     width: 80%;
@@ -77,6 +75,7 @@
     border: none;
     cursor: pointer;
     padding: 0.5rem;
+    margin: 0;
 }
 
 .exit i{
