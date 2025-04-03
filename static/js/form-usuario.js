@@ -17,7 +17,7 @@ async function updateForm(event) {
         return
     }
 
-    const updateUser = {nome, rg: nickname, senha, admin: admin.checked}
+    const updateUser = {nome: capitalizarTexto(nome), rg: nickname, senha, admin: admin.checked}
 
     try{
         const url = `http://${env.IP_SERVIDOR}:${env.PORTA_SERVIDOR}/index/usuarios/${id}`
@@ -55,7 +55,7 @@ async function postForm(event) {
         return
     }
 
-    const postUser = {nome, rg: nickname, senha, admin: false}
+    const postUser = {nome: capitalizarTexto(nome), rg: nickname, senha, admin: false}
 
     try{
         const url = `http://${env.IP_SERVIDOR}:${env.PORTA_SERVIDOR}/index/usuarios`
@@ -101,4 +101,12 @@ function testeNome(nome, regex){
 function testeNickname(nickname, regex){
     if(nickname.trim() === "") return false
     return regex.test(nickname)
+}
+
+function capitalizarTexto(texto) {
+    return texto
+        .toLowerCase() 
+        .split(" ") 
+        .map(palavra => palavra.charAt(0).toUpperCase() + palavra.slice(1)) 
+        .join(" ")
 }

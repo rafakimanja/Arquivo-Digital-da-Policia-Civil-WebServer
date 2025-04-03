@@ -45,6 +45,7 @@ func CriaNovoUsuario(c *gin.Context) {
 
 func BuscaUsuario(c *gin.Context) {
 	var usuario models.Usuario
+	usuarioCookie, _ := c.Get("Usuario")
 
 	id := c.Params.ByName("id")
 	database.DB.First(&usuario, id)
@@ -58,6 +59,7 @@ func BuscaUsuario(c *gin.Context) {
 		c.HTML(http.StatusOK, "form-usuarios.html", gin.H{
 			"Update": true,
 			"Usuario": usuario,
+			"UsuarioCookie": usuarioCookie,
 		})
 	}
 }

@@ -20,7 +20,7 @@ async function updateForm(event) {
     }
 
     const formData = new FormData()
-    formData.append("nome", nome)
+    formData.append("nome", nome.toUpperCase())
     formData.append("ano", ano)
     formData.append("categoria", categoria)
     formData.append("arquivo", arquivo)
@@ -59,7 +59,7 @@ async function postForm(event) {
     }
 
     const formData = new FormData()
-    formData.append("nome", nome)
+    formData.append("nome", nome.toUpperCase())
     formData.append("ano", ano)
     formData.append("categoria", categoria)
     formData.append("arquivo", arquivo)
@@ -83,7 +83,7 @@ async function postForm(event) {
 }
 
 function validaForm(nome, ano, categoria, arquivo, updateArq){
-    const regexNome = new RegExp("^[A-Za-z0-9_.-]+$") 
+    const regexNome = new RegExp("^[A-Za-z0-9-._ ]+$") 
     const regexAno = new RegExp("^[0-9]{4}$")
 
     if(!testeNome(nome, regexNome)) return {resp: false, message: "Nome invalido!"}

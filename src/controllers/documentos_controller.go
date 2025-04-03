@@ -77,6 +77,8 @@ func BuscaArquivo(c *gin.Context) {
 	id := c.Params.ByName("id")
 	database.DB.First(&documento, id)
 
+	usuario, _ := c.Get("Usuario")
+
 	if documento.ID == 0 {
 		c.HTML(http.StatusNotFound, "erro.html", gin.H{
 			"code": http.StatusNotFound,
@@ -86,6 +88,7 @@ func BuscaArquivo(c *gin.Context) {
 		c.HTML(http.StatusOK, "form-documento.html", gin.H{
 			"Update": true,
 			"Documento": documento,
+			"Usuario": usuario,
 		})
 	}
 }
