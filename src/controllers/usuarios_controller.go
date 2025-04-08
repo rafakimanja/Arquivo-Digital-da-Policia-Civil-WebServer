@@ -24,9 +24,9 @@ func ExibeTodosUsuarios(c *gin.Context) {
 }
 
 func ExibeFormUsuario(c *gin.Context) {
-	usuario, _ := c.Get("Usuario")
+	usuarioCookie, _ := c.Get("Usuario")
 	c.HTML(http.StatusOK, "form-usuarios.html", gin.H{
-		"Usuario": usuario,
+		"UsuarioCookie": usuarioCookie,
 	})
 }
 

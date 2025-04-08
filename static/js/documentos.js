@@ -1,16 +1,24 @@
 async function deletaArquivo(id) {
     let url = `http://${env.IP_SERVIDOR}:${env.PORTA_SERVIDOR}/index/documentos/${id}`
-    try{
-        const resp = await fetch(url, {
-            method: 'DELETE'
-        })
-        if(resp.status === 200) alert('Arquivo deletado com sucesso!')
-        if(resp.status === 404) alert('Arquivo nao encontrado!')
-    } catch (error){
-        alert('Erro ao excluir o documento!')
+
+    let confirmaExclusao = confirm('Deseja deletar o arquivo?')
+
+    if(confirmaExclusao){
+        try{
+            const resp = await fetch(url, {
+                method: 'DELETE'
+            })
+            if(resp.status === 200) alert('Arquivo deletado com sucesso!')
+            if(resp.status === 404) alert('Arquivo nao encontrado!')
+        } catch (error){
+            alert('Erro ao excluir o documento!')
+            return
+        } finally {
+            window.location.href = "/index/documentos"
+        }
+    }
+    else{
         return
-    } finally {
-        window.location.href = "/index/documentos"
     }
 }
 
